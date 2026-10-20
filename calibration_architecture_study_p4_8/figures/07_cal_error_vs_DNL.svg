@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" font-family="Segoe UI,Arial,sans-serif" font-size="13">
+<rect width="900" height="560" fill="white"/>
+<text x="74" y="26" font-size="16" font-weight="600" fill="#222">CAL2: estimation error vs max|DNL| (BWAR-final)</text>
+<rect x="74" y="44" width="808" height="458" fill="none" stroke="#777"/>
+<line x1="74" y1="502.0" x2="882" y2="502.0" stroke="#e8e8e8"/>
+<text x="68" y="502.0" text-anchor="end" dominant-baseline="middle" fill="#444">1</text>
+<line x1="74" y1="410.4" x2="882" y2="410.4" stroke="#e8e8e8"/>
+<text x="68" y="410.4" text-anchor="end" dominant-baseline="middle" fill="#444">1.12</text>
+<line x1="74" y1="318.8" x2="882" y2="318.8" stroke="#e8e8e8"/>
+<text x="68" y="318.8" text-anchor="end" dominant-baseline="middle" fill="#444">1.25</text>
+<line x1="74" y1="227.2" x2="882" y2="227.2" stroke="#e8e8e8"/>
+<text x="68" y="227.2" text-anchor="end" dominant-baseline="middle" fill="#444">1.41</text>
+<line x1="74" y1="135.6" x2="882" y2="135.6" stroke="#e8e8e8"/>
+<text x="68" y="135.6" text-anchor="end" dominant-baseline="middle" fill="#444">1.57</text>
+<line x1="74" y1="44.0" x2="882" y2="44.0" stroke="#e8e8e8"/>
+<text x="68" y="44.0" text-anchor="end" dominant-baseline="middle" fill="#444">1.76</text>
+<line x1="74.0" y1="44" x2="74.0" y2="502" stroke="#e8e8e8"/>
+<text x="74.0" y="520" text-anchor="middle" fill="#444">0.01</text>
+<line x1="208.7" y1="44" x2="208.7" y2="502" stroke="#e8e8e8"/>
+<text x="208.7" y="520" text-anchor="middle" fill="#444">0.842</text>
+<line x1="343.3" y1="44" x2="343.3" y2="502" stroke="#e8e8e8"/>
+<text x="343.3" y="520" text-anchor="middle" fill="#444">1.67</text>
+<line x1="478.0" y1="44" x2="478.0" y2="502" stroke="#e8e8e8"/>
+<text x="478.0" y="520" text-anchor="middle" fill="#444">2.5</text>
+<line x1="612.7" y1="44" x2="612.7" y2="502" stroke="#e8e8e8"/>
+<text x="612.7" y="520" text-anchor="middle" fill="#444">3.34</text>
+<line x1="747.3" y1="44" x2="747.3" y2="502" stroke="#e8e8e8"/>
+<text x="747.3" y="520" text-anchor="middle" fill="#444">4.17</text>
+<line x1="882.0" y1="44" x2="882.0" y2="502" stroke="#e8e8e8"/>
+<text x="882.0" y="520" text-anchor="middle" fill="#444">5</text>
+<line x1="74" y1="502.0" x2="882" y2="502.0" stroke="#d62728" stroke-dasharray="6,4" stroke-width="1.5"/>
+<text x="478" y="546" text-anchor="middle" fill="#222">calibration estimation error (LSB or 
+<text x="18" y="273" text-anchor="middle" fill="#222" transform="rotate(-90 18 273)">P99 max|DNL| [LSB]</text>
+<polyline points="74.0,502.0 75.6,473.9 80.5,376.6 88.6,242.0 104.8,50.5 " fill="none" stroke="#1f77b4" stroke-width="2"/>
+<circle cx="88.6" cy="430.3" r="2.6" fill="#d62728"/>
+<circle cx="153.3" cy="136.7" r="2.6" fill="#d62728"/>
+<circle cx="234.3" cy="98.1" r="2.6" fill="#d62728"/>
+<circle cx="396.2" cy="79.1" r="2.6" fill="#d62728"/>
+<circle cx="882.0" cy="44.0" r="2.6" fill="#d62728"/>
+<line x1="84" y1="60" x2="106" y2="60" stroke="#1f77b4" stroke-width="3"/>
+<text x="112" y="64" fill="#222">abs LSB error</text>
+<circle cx="84" cy="79" r="4" fill="#d62728"/><circle cx="106" cy="79" r="4" fill="#d62728"/>
+<text x="112" y="83" fill="#222">rel error [%]</text>
+</svg>

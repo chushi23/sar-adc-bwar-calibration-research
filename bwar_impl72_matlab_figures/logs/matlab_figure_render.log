@@ -1,0 +1,84 @@
+MATLAB BWAR figure render starts: 2026-10-20 12:34:49
+MATLAB BWAR figure render starts: 2026-10-20 12:35:47
+[警告: SceneNode 状态错误。
+CData 必须为 RGB 三元组、标量、与 X 长度相同的 M×1 向量或 M×3 矩阵。
+] 
+[> 位置：defaulterrorcallback (第 12 行)
+位置: matlab.graphics.illustration/ColorBar/get.Label
+位置: render_bwar_impl72_figures>fig02_integer_bridge_search (第 128 行)
+位置: render_bwar_impl72_figures (第 41 行)] 
+[警告: SceneNode 状态错误。
+字符串标量或字符向量必须具备有效的解释器语法:
+Cb=2 是唯一保留\\n高良率搜索空间的整数桥
+] 
+[> 位置：defaulterrorcallback (第 12 行)
+位置: matlab.graphics.illustration/ColorBar/get.Label
+位置: render_bwar_impl72_figures>fig02_integer_bridge_search (第 128 行)
+位置: render_bwar_impl72_figures (第 41 行)] 
+[警告: SceneNode 状态错误。
+CData 必须为 RGB 三元组、标量、与 X 长度相同的 M×1 向量或 M×3 矩阵。
+] 
+[> 位置：defaulterrorcallback (第 12 行)
+位置: render_bwar_impl72_figures>saveplot (第 311 行)
+位置: render_bwar_impl72_figures>fig02_integer_bridge_search (第 136 行)
+位置: render_bwar_impl72_figures (第 41 行)] 
+[警告: SceneNode 状态错误。
+CData 必须为 RGB 三元组、标量、与 X 长度相同的 M×1 向量或 M×3 矩阵。
+] 
+[警告: 箱线图可能无法在分块图布局中正确显示。] 
+[> 位置：boxplot>renderLabels/setLabelappdata (第 3045 行)
+位置: boxplot>renderLabels (第 2948 行)
+位置: boxplot (第 430 行)
+位置: render_bwar_impl72_figures>fig06_pdk_sensitivity (第 230 行)
+位置: render_bwar_impl72_figures (第 49 行)] 
+[警告: 箱线图可能无法在分块图布局中正确显示。] 
+[> 位置：boxplot>renderLabels/setLabelappdata (第 3045 行)
+位置: boxplot>renderLabels (第 2948 行)
+位置: boxplot (第 430 行)
+位置: render_bwar_impl72_figures>fig06_pdk_sensitivity (第 235 行)
+位置: render_bwar_impl72_figures (第 49 行)] 
+[警告: SceneNode 状态错误。
+字符串标量或字符向量必须具备有效的解释器语法:
+A/C：仅使用\\n19 个测得位权
+] 
+[> 位置：defaulterrorcallback (第 12 行)
+位置: render_bwar_impl72_figures>saveplot (第 311 行)
+位置: render_bwar_impl72_figures>fig07_calibration_levels (第 270 行)
+位置: render_bwar_impl72_figures (第 51 行)] 
+[警告: SceneNode 状态错误。
+字符串标量或字符向量必须具备有效的解释器语法:
+B：需要真实区间顺序\\n仅是诊断上界
+] 
+[> 位置：defaulterrorcallback (第 12 行)
+位置: render_bwar_impl72_figures>saveplot (第 311 行)
+位置: render_bwar_impl72_figures>fig07_calibration_levels (第 270 行)
+位置: render_bwar_impl72_figures (第 51 行)] 
+MATLAB BWAR figure render complete: 2026-10-20 12:36:15
+MATLAB BWAR figure render starts: 2026-10-20 12:40:10
+[警告: 箱线图可能无法在分块图布局中正确显示。] 
+[> 位置：boxplot>renderLabels/setLabelappdata (第 3045 行)
+位置: boxplot>renderLabels (第 2948 行)
+位置: boxplot (第 430 行)
+位置: render_bwar_impl72_figures>fig06_pdk_sensitivity (第 230 行)
+位置: render_bwar_impl72_figures (第 49 行)] 
+[警告: 箱线图可能无法在分块图布局中正确显示。] 
+[> 位置：boxplot>renderLabels/setLabelappdata (第 3045 行)
+位置: boxplot>renderLabels (第 2948 行)
+位置: boxplot (第 430 行)
+位置: render_bwar_impl72_figures>fig06_pdk_sensitivity (第 235 行)
+位置: render_bwar_impl72_figures (第 49 行)] 
+MATLAB BWAR figure render complete: 2026-10-20 12:40:39
+MATLAB BWAR figure render starts: 2026-10-20 12:43:01
+[警告: 箱线图可能无法在分块图布局中正确显示。] 
+[> 位置：boxplot>renderLabels/setLabelappdata (第 3045 行)
+位置: boxplot>renderLabels (第 2948 行)
+位置: boxplot (第 430 行)
+位置: render_bwar_impl72_figures>fig06_pdk_sensitivity (第 235 行)
+位置: render_bwar_impl72_figures (第 49 行)] 
+[警告: 箱线图可能无法在分块图布局中正确显示。] 
+[> 位置：boxplot>renderLabels/setLabelappdata (第 3045 行)
+位置: boxplot>renderLabels (第 2948 行)
+位置: boxplot (第 430 行)
+位置: render_bwar_impl72_figures>fig06_pdk_sensitivity (第 240 行)
+位置: render_bwar_impl72_figures (第 49 行)] 
+MATLAB BWAR figure render complete: 2026-10-20 12:43:28

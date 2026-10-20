@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" font-family="Segoe UI,Arial,sans-serif" font-size="13">
+<rect width="900" height="560" fill="white"/>
+<text x="74" y="26" font-size="16" font-weight="600" fill="#222">Navg vs CAL2 pass yield</text>
+<rect x="74" y="44" width="808" height="458" fill="none" stroke="#777"/>
+<line x1="74" y1="502.0" x2="882" y2="502.0" stroke="#e8e8e8"/>
+<text x="68" y="502.0" text-anchor="end" dominant-baseline="middle" fill="#444">0.016</text>
+<line x1="74" y1="410.4" x2="882" y2="410.4" stroke="#e8e8e8"/>
+<text x="68" y="410.4" text-anchor="end" dominant-baseline="middle" fill="#444">0.0362</text>
+<line x1="74" y1="318.8" x2="882" y2="318.8" stroke="#e8e8e8"/>
+<text x="68" y="318.8" text-anchor="end" dominant-baseline="middle" fill="#444">0.0819</text>
+<line x1="74" y1="227.2" x2="882" y2="227.2" stroke="#e8e8e8"/>
+<text x="68" y="227.2" text-anchor="end" dominant-baseline="middle" fill="#444">0.185</text>
+<line x1="74" y1="135.6" x2="882" y2="135.6" stroke="#e8e8e8"/>
+<text x="68" y="135.6" text-anchor="end" dominant-baseline="middle" fill="#444">0.419</text>
+<line x1="74" y1="44.0" x2="882" y2="44.0" stroke="#e8e8e8"/>
+<text x="68" y="44.0" text-anchor="end" dominant-baseline="middle" fill="#444">0.948</text>
+<line x1="74.0" y1="44" x2="74.0" y2="502" stroke="#e8e8e8"/>
+<text x="74.0" y="520" text-anchor="middle" fill="#444">1</text>
+<line x1="208.7" y1="44" x2="208.7" y2="502" stroke="#e8e8e8"/>
+<text x="208.7" y="520" text-anchor="middle" fill="#444">86.2</text>
+<line x1="343.3" y1="44" x2="343.3" y2="502" stroke="#e8e8e8"/>
+<text x="343.3" y="520" text-anchor="middle" fill="#444">171</text>
+<line x1="478.0" y1="44" x2="478.0" y2="502" stroke="#e8e8e8"/>
+<text x="478.0" y="520" text-anchor="middle" fill="#444">256</text>
+<line x1="612.7" y1="44" x2="612.7" y2="502" stroke="#e8e8e8"/>
+<text x="612.7" y="520" text-anchor="middle" fill="#444">342</text>
+<line x1="747.3" y1="44" x2="747.3" y2="502" stroke="#e8e8e8"/>
+<text x="747.3" y="520" text-anchor="middle" fill="#444">427</text>
+<line x1="882.0" y1="44" x2="882.0" y2="502" stroke="#e8e8e8"/>
+<text x="882.0" y="520" text-anchor="middle" fill="#444">512</text>
+<text x="478" y="546" text-anchor="middle" fill="#222">Navg</text>
+<text x="18" y="273" text-anchor="middle" fill="#222" transform="rotate(-90 18 273)">pass yield</text>
+<polyline points="74.0,156.4 78.7,110.5 97.7,76.1 123.0,70.6 173.6,56.8 274.8,54.7 477.2,51.1 882.0,44.0 " fill="none" stroke="#1f77b4" stroke-width="2"/>
+<polyline points="74.0,234.2 78.7,170.1 97.7,132.2 123.0,104.3 173.6,89.1 274.8,80.3 477.2,66.2 882.0,57.6 " fill="none" stroke="#d62728" stroke-width="2"/>
+<polyline points="74.0,466.3 78.7,231.7 97.7,157.7 123.0,155.2 173.6,128.6 274.8,101.5 477.2,86.0 882.0,74.9 " fill="none" stroke="#2ca02c" stroke-width="2"/>
+<polyline points="78.7,477.0 97.7,257.0 123.0,225.5 173.6,189.2 274.8,168.0 477.2,132.7 882.0,124.2 " fill="none" stroke="#9467bd" stroke-width="2"/>
+<polyline points="97.7,502.0 123.0,365.5 173.6,266.9 274.8,228.0 477.2,186.6 882.0,163.1 " fill="none" stroke="#ff7f0e" stroke-width="2"/>
+<line x1="84" y1="60" x2="106" y2="60" stroke="#1f77b4" stroke-width="3"/>
+<text x="112" y="64" fill="#222">0.02 LSB</text>
+<line x1="84" y1="79" x2="106" y2="79" stroke="#d62728" stroke-width="3"/>
+<text x="112" y="83" fill="#222">0.05 LSB</text>
+<line x1="84" y1="98" x2="106" y2="98" stroke="#2ca02c" stroke-width="3"/>
+<text x="112" y="102" fill="#222">0.1 LSB</text>
+<line x1="84" y1="117" x2="106" y2="117" stroke="#9467bd" stroke-width="3"/>
+<text x="112" y="121" fill="#222">0.25 LSB</text>
+<line x1="84" y1="136" x2="106" y2="136" stroke="#ff7f0e" stroke-width="3"/>
+<text x="112" y="140" fill="#222">0.5 LSB</text>
+</svg>

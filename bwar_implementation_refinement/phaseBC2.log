@@ -1,0 +1,58 @@
+=== IMPL REFINEMENT PHASEBC START 2026-10-15 23:37:22 ===
+BWAR-Impl candidate: {"Cb_Cu":2,"topR":64,"lowR1":256,"botCap":1} (cap 250.2 pF)
+CAL2 meas sig=0.02 Navg=  1 Vos=0: pass=34.8% DNL99=0.890 sigma_cal~0.0200
+CAL2 meas sig=0.02 Navg=  4 Vos=0: pass=52.4% DNL99=0.828 sigma_cal~0.0099
+CAL2 meas sig=0.02 Navg= 16 Vos=0: pass=71.2% DNL99=0.812 sigma_cal~0.0050
+CAL2 meas sig=0.02 Navg= 32 Vos=0: pass=74.8% DNL99=0.803 sigma_cal~0.0035
+CAL2 meas sig=0.02 Navg= 64 Vos=0: pass=84.6% DNL99=0.796 sigma_cal~0.0025
+CAL2 meas sig=0.02 Navg=128 Vos=0: pass=86.2% DNL99=0.800 sigma_cal~0.0017
+CAL2 meas sig=0.02 Navg=256 Vos=0: pass=89.0% DNL99=0.798 sigma_cal~0.0012
+CAL2 meas sig=0.02 Navg=512 Vos=0: pass=94.8% DNL99=0.796 sigma_cal~0.0009
+CAL2 meas sig=0.05 Navg=  1 Vos=0: pass=17.4% DNL99=1.000 sigma_cal~0.0491
+CAL2 meas sig=0.05 Navg=  4 Vos=0: pass=30.8% DNL99=0.961 sigma_cal~0.0246
+CAL2 meas sig=0.05 Navg= 16 Vos=0: pass=43.2% DNL99=0.861 sigma_cal~0.0125
+CAL2 meas sig=0.05 Navg= 32 Vos=0: pass=55.4% DNL99=0.823 sigma_cal~0.0087
+CAL2 meas sig=0.05 Navg= 64 Vos=0: pass=63.4% DNL99=0.808 sigma_cal~0.0062
+CAL2 meas sig=0.05 Navg=128 Vos=0: pass=68.6% DNL99=0.805 sigma_cal~0.0044
+CAL2 meas sig=0.05 Navg=256 Vos=0: pass=77.8% DNL99=0.799 sigma_cal~0.0031
+CAL2 meas sig=0.05 Navg=512 Vos=0: pass=84.0% DNL99=0.799 sigma_cal~0.0022
+CAL2 meas sig=0.1 Navg=  1 Vos=0: pass=2.2% DNL99=1.160 sigma_cal~0.0980
+CAL2 meas sig=0.1 Navg=  4 Vos=0: pass=17.8% DNL99=1.012 sigma_cal~0.0497
+CAL2 meas sig=0.1 Navg= 16 Vos=0: pass=34.4% DNL99=0.945 sigma_cal~0.0247
+CAL2 meas sig=0.1 Navg= 32 Vos=0: pass=35.2% DNL99=0.891 sigma_cal~0.0174
+CAL2 meas sig=0.1 Navg= 64 Vos=0: pass=44.6% DNL99=0.856 sigma_cal~0.0124
+CAL2 meas sig=0.1 Navg=128 Vos=0: pass=56.8% DNL99=0.824 sigma_cal~0.0088
+CAL2 meas sig=0.1 Navg=256 Vos=0: pass=65.2% DNL99=0.800 sigma_cal~0.0061
+CAL2 meas sig=0.1 Navg=512 Vos=0: pass=72.0% DNL99=0.808 sigma_cal~0.0043
+CAL2 meas sig=0.25 Navg=  1 Vos=0: pass=0.0% DNL99=1.989 sigma_cal~0.2430
+CAL2 meas sig=0.25 Navg=  4 Vos=0: pass=2.0% DNL99=1.315 sigma_cal~0.1228
+CAL2 meas sig=0.25 Navg= 16 Vos=0: pass=14.2% DNL99=1.034 sigma_cal~0.0621
+CAL2 meas sig=0.25 Navg= 32 Vos=0: pass=18.8% DNL99=1.001 sigma_cal~0.0439
+CAL2 meas sig=0.25 Navg= 64 Vos=0: pass=26.0% DNL99=0.976 sigma_cal~0.0309
+CAL2 meas sig=0.25 Navg=128 Vos=0: pass=31.4% DNL99=0.883 sigma_cal~0.0218
+CAL2 meas sig=0.25 Navg=256 Vos=0: pass=43.0% DNL99=0.842 sigma_cal~0.0154
+CAL2 meas sig=0.25 Navg=512 Vos=0: pass=46.4% DNL99=0.836 sigma_cal~0.0110
+CAL2 meas sig=0.5 Navg=  1 Vos=0: pass=0.0% DNL99=1.857 sigma_cal~0.5025
+CAL2 meas sig=0.5 Navg=  4 Vos=0: pass=0.0% DNL99=1.759 sigma_cal~0.2464
+CAL2 meas sig=0.5 Navg= 16 Vos=0: pass=1.6% DNL99=1.327 sigma_cal~0.1228
+CAL2 meas sig=0.5 Navg= 32 Vos=0: pass=5.4% DNL99=1.215 sigma_cal~0.0868
+CAL2 meas sig=0.5 Navg= 64 Vos=0: pass=13.0% DNL99=1.079 sigma_cal~0.0611
+CAL2 meas sig=0.5 Navg=128 Vos=0: pass=18.4% DNL99=1.000 sigma_cal~0.0439
+CAL2 meas sig=0.5 Navg=256 Vos=0: pass=26.6% DNL99=0.951 sigma_cal~0.0304
+CAL2 meas sig=0.5 Navg=512 Vos=0: pass=32.8% DNL99=0.898 sigma_cal~0.0218
+{输入参数的数目不足。
+
+出错 practical_cal2>push_cal (第 65 行)
+r.mean_down_transitions = downs / size(met,1);
+                          ^^^^^
+出错 practical_cal2 (第 49 行)
+    rows = push_cal(rows, sm, Navg, vo, met, NaN);
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+出错 main_impl_refinement>run_phaseBC (第 103 行)
+B1 = practical_cal2(a, cfg);
+     ^^^^^^^^^^^^^^^^^^^^^^
+出错 main_impl_refinement (第 21 行)
+    run_phaseBC(cfg);
+    ^^^^^^^^^^^^^^^^
+} 
+ERROR: MATLAB error Exit Status: 0x00000001

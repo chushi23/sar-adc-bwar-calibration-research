@@ -1,0 +1,75 @@
+=== PHASE48 STAGE ALL START 2026-10-15 19:30:08 ===
+Phase 5 outputs exist, skipping (delete to rerun).
+CAL2 BWAR      errLSB=0     ppm=0     bits=Inf : pass=100.0% DNL99=0.980 INL99~0.569
+CAL2 BWAR      errLSB=0.01  ppm=0     bits=Inf : pass=57.5% DNL99=1.000 INL99~Inf
+CAL2 BWAR      errLSB=0.02  ppm=0     bits=Inf : pass=28.8% DNL99=1.035 INL99~Inf
+CAL2 BWAR      errLSB=0.05  ppm=0     bits=Inf : pass=6.4% DNL99=1.168 INL99~Inf
+CAL2 BWAR      errLSB=0.1   ppm=0     bits=Inf : pass=0.6% DNL99=1.380 INL99~Inf
+CAL2 BWAR      errLSB=0.2   ppm=0     bits=Inf : pass=0.0% DNL99=1.750 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=0     bits=12  : pass=0.0% DNL99=30.522 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=0     bits=14  : pass=0.0% DNL99=6.919 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=0     bits=16  : pass=0.0% DNL99=1.896 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=0     bits=18  : pass=21.9% DNL99=1.273 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=0     bits=20  : pass=69.8% DNL99=1.018 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=0     bits=22  : pass=94.2% DNL99=0.993 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=0     bits=24  : pass=98.7% DNL99=0.981 INL99~Inf
+CAL2 BWAR      errLSB=0.01  ppm=0     bits=14  : pass=0.0% DNL99=6.697 INL99~Inf
+CAL2 BWAR      errLSB=0.01  ppm=0     bits=16  : pass=0.0% DNL99=1.893 INL99~Inf
+CAL2 BWAR      errLSB=0.01  ppm=0     bits=18  : pass=21.1% DNL99=1.283 INL99~Inf
+CAL2 BWAR      errLSB=0.01  ppm=0     bits=20  : pass=59.6% DNL99=1.025 INL99~Inf
+CAL2 BWAR      errLSB=0.05  ppm=0     bits=14  : pass=0.0% DNL99=6.806 INL99~Inf
+CAL2 BWAR      errLSB=0.05  ppm=0     bits=16  : pass=0.0% DNL99=1.902 INL99~Inf
+CAL2 BWAR      errLSB=0.05  ppm=0     bits=18  : pass=13.9% DNL99=1.339 INL99~Inf
+CAL2 BWAR      errLSB=0.05  ppm=0     bits=20  : pass=6.8% DNL99=1.182 INL99~Inf
+CAL2 BWAR      errLSB=0.1   ppm=0     bits=14  : pass=0.0% DNL99=6.956 INL99~Inf
+CAL2 BWAR      errLSB=0.1   ppm=0     bits=16  : pass=0.0% DNL99=1.927 INL99~Inf
+CAL2 BWAR      errLSB=0.1   ppm=0     bits=18  : pass=1.7% DNL99=1.516 INL99~Inf
+CAL2 BWAR      errLSB=0.1   ppm=0     bits=20  : pass=0.7% DNL99=1.367 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=10    bits=Inf : pass=82.1% DNL99=1.093 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=50    bits=Inf : pass=7.9% DNL99=1.573 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=100   bits=Inf : pass=0.5% DNL99=1.650 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=200   bits=Inf : pass=0.2% DNL99=1.689 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=500   bits=Inf : pass=0.0% DNL99=1.764 INL99~Inf
+CAL2 BWAR      errLSB=0     ppm=1000  bits=Inf : pass=0.0% DNL99=Inf INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=0     bits=Inf : pass=0.0% DNL99=73.135 INL99~Inf
+CAL2 CurrentR  errLSB=0.01  ppm=0     bits=Inf : pass=0.0% DNL99=72.551 INL99~Inf
+CAL2 CurrentR  errLSB=0.02  ppm=0     bits=Inf : pass=0.0% DNL99=70.716 INL99~Inf
+CAL2 CurrentR  errLSB=0.05  ppm=0     bits=Inf : pass=0.0% DNL99=62.550 INL99~Inf
+CAL2 CurrentR  errLSB=0.1   ppm=0     bits=Inf : pass=0.0% DNL99=63.607 INL99~Inf
+CAL2 CurrentR  errLSB=0.2   ppm=0     bits=Inf : pass=0.0% DNL99=82.275 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=0     bits=12  : pass=0.0% DNL99=86.724 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=0     bits=14  : pass=0.0% DNL99=85.850 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=0     bits=16  : pass=0.0% DNL99=80.290 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=0     bits=18  : pass=0.0% DNL99=65.927 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=0     bits=20  : pass=0.0% DNL99=70.993 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=0     bits=22  : pass=0.0% DNL99=72.356 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=0     bits=24  : pass=0.0% DNL99=72.941 INL99~Inf
+CAL2 CurrentR  errLSB=0.01  ppm=0     bits=14  : pass=0.0% DNL99=81.548 INL99~Inf
+CAL2 CurrentR  errLSB=0.01  ppm=0     bits=16  : pass=0.0% DNL99=80.271 INL99~Inf
+CAL2 CurrentR  errLSB=0.01  ppm=0     bits=18  : pass=0.0% DNL99=62.970 INL99~Inf
+CAL2 CurrentR  errLSB=0.01  ppm=0     bits=20  : pass=0.0% DNL99=72.745 INL99~Inf
+CAL2 CurrentR  errLSB=0.05  ppm=0     bits=14  : pass=0.0% DNL99=80.215 INL99~Inf
+CAL2 CurrentR  errLSB=0.05  ppm=0     bits=16  : pass=0.0% DNL99=77.435 INL99~Inf
+CAL2 CurrentR  errLSB=0.05  ppm=0     bits=18  : pass=0.0% DNL99=84.434 INL99~Inf
+CAL2 CurrentR  errLSB=0.05  ppm=0     bits=20  : pass=0.0% DNL99=74.708 INL99~Inf
+CAL2 CurrentR  errLSB=0.1   ppm=0     bits=14  : pass=0.0% DNL99=88.529 INL99~Inf
+CAL2 CurrentR  errLSB=0.1   ppm=0     bits=16  : pass=0.0% DNL99=84.963 INL99~Inf
+CAL2 CurrentR  errLSB=0.1   ppm=0     bits=18  : pass=0.0% DNL99=66.421 INL99~Inf
+CAL2 CurrentR  errLSB=0.1   ppm=0     bits=20  : pass=0.0% DNL99=71.367 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=10    bits=Inf : pass=0.0% DNL99=72.941 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=50    bits=Inf : pass=0.0% DNL99=82.725 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=100   bits=Inf : pass=0.0% DNL99=80.698 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=200   bits=Inf : pass=0.0% DNL99=66.717 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=500   bits=Inf : pass=0.0% DNL99=73.816 INL99~Inf
+CAL2 CurrentR  errLSB=0     ppm=1000  bits=Inf : pass=0.0% DNL99=72.009 INL99~Inf
+{错误使用 fprintf
+无法从 table 转换为 int64。
+
+出错 main_phase48>run_phase4 (第 295 行)
+fprintf(fid, '- 纯字长（误差=0）：≥99%% 良率的最小字长 = %d bit\n', min(req(fBits, 'bits')));
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+出错 main_phase48 (第 16 行)
+case 'all', run_phase5(cfg); run_phase4(cfg); run_phase6(cfg); run_phase7(cfg); run_phase8(cfg);
+                             ^^^^^^^^^^^^^^^
+} 
+ERROR: MATLAB error Exit Status: 0x00000001

@@ -1,0 +1,23 @@
+{
+  "matlab": "25.2.0.2998904 (R2025b)",
+  "computer": "PCWIN64",
+  "cpu": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+  "logicalProcessors": "12",
+  "seedRaw": 2.0261013E+7,
+  "seedMC": 2.61015E+7,
+  "userScope": "Phase 0--3 only; no CAL2, optimization, dynamics, Spectre or Virtuoso",
+  "started": "2026-10-15 17:00:30",
+  "parallel": "parallel.ThreadPool",
+  "workers": 4,
+  "finished": "2026-10-15 17:00:43",
+  "testsPassed": [
+    "test_ideal_16bit_binary",
+    "test_nominal_architectures",
+    "test_CAL1_perfect_weights",
+    "test_threshold_extraction",
+    "test_reproducible_MC",
+    "test_bridge_matrix",
+    "test_CAL0_regression"
+  ],
+  "conditionalMetrics": "finite_* columns exclude nonmonotonic dies and MUST NOT be used as unconditional yield"
+}

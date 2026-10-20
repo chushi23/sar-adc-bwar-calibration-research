@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三项目出图分析 · SAR ADC CDAC 校准研究</title>
+<style>
+  :root{--bg:#f6f8fa;--card:#fff;--ink:#173044;--sub:#527083;--line:#dce6ec;--blue:#286ba6;--green:#078579;--red:#a23c32;--amber:#d28b21;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Arial,"Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 64px}
+  h1{font-size:28px;margin:0 0 6px}
+  h2{font-size:21px;margin:38px 0 12px;border-left:5px solid var(--blue);padding-left:12px}
+  h3{font-size:16px;margin:22px 0 8px;color:var(--blue)}
+  p{margin:8px 0}
+  .lead{color:var(--sub);font-size:15px;margin-bottom:8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0;box-shadow:0 1px 3px rgba(23,48,68,.05)}
+  .stat{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0}
+  .stat .box{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+  .stat .n{font-size:26px;font-weight:700;color:var(--blue)}
+  .stat .t{font-size:13px;color:var(--sub)}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;margin:10px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;vertical-align:top;text-align:left}
+  th{background:#eef4f8;color:var(--ink);font-weight:600}
+  tr:nth-child(even) td{background:#fafcfe}
+  .tag{display:inline-block;padding:1px 8px;border-radius:20px;font-size:11.5px;font-weight:600;color:#fff}
+  .diag{background:var(--blue)} .cal{background:var(--green)} .sel{background:var(--amber)} .ver{background:var(--red)} .rep{background:#6b4ea0}
+  code{background:#eef4f8;padding:1px 5px;border-radius:4px;font-size:12.5px}
+  .note{background:#fff8e8;border-left:4px solid var(--amber);padding:10px 14px;border-radius:6px;font-size:14px}
+  .key{background:#eaf6f3;border-left:4px solid var(--green);padding:10px 14px;border-radius:6px;font-size:14px}
+  ul{margin:8px 0;padding-left:22px}
+  li{margin:4px 0}
+  footer{color:var(--sub);font-size:12.5px;margin-top:40px;border-top:1px solid var(--line);padding-top:14px}
+  a{color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>SAR ADC CDAC 校准研究 —— 出图全分析</h1>
+  <p class="lead">三个项目（Phase 0–3 / Phase 4–8 / Phase A/B/C）的所有图都由 MATLAB 代码<strong>自动生成</strong>为 SVG 矢量图，不是手画的。本文梳理：出了哪些图、每张图横纵轴是什么、它<strong>用来回答什么科学问题</strong>。</p>
+
+  <div class="stat">
+    <div class="box"><div class="n">45</div><div class="t">真实图总数（去重后）</div></div>
+    <div class="box"><div class="n">2</div><div class="t">套 SVG 绘制器</div></div>
+    <div class="box"><div class="n">~23 MB</div><div class="t">图文件总体积</div></div>
+    <div class="box"><div class="n">5</div><div class="t">用途类别</div></div>
+  </div>
+
+  <div class="card">
+    <h3>一、图是怎么生成的？（为什么是 SVG）</h3>
+    <p>工程刻意<strong>不依赖 MATLAB 图形后端 / 浏览器 / GPU</strong>，用两个纯文本 SVG 写出器把数据画成矢量图，好处是：可离线批量跑、文件小、能直接嵌进 Markdown 报告、任何人用浏览器都能看。</p>
+    <ul>
+      <li><span class="tag diag">Phase 0–3</span> 用 <code>make_figures_svg.m</code>（内置 <code>bars</code> 柱状 / <code>linesvg</code> 折线），输出到 <code>calibration_architecture_study/figures/</code>。</li>
+      <li><span class="tag sel">Phase 4–8</span> 用更通用的 <code>svgfig.m</code>（折线/散点/虚线，支持 logy 坐标），输出到 <code>calibration_architecture_study_p4_8/figures/</code>；其中 01–04 也复用 Phase 0–3 逻辑。</li>
+      <li><span class="tag ver">Phase A/B/C</span> 复用同一套 <code>svgfig.m</code>（bwar 把它 addpath 进来），在 <code>finalize_impl_report.m</code> 里输出 <code>bwar_implementation_refinement/figures/Fig1~11</code>。</li>
+    </ul>
+    <p class="note">注：<code>reruns/20261018_202107/figures/</code> 和 <code>.comment_backup/</code> 里是<strong>可复现重跑的副本</strong>，内容同源，不计入"新图"。<code>_smoke.svg</code> 是探针/冒烟测试的产物，属测试残留。</p>
+  </div>
+
+  <h2>二、全部出图清单（按项目 + 用途）</h2>
+
+  <h3>① Phase 0–3 · calibration_architecture_study/figures/ （20 张）</h3>
+  <p class="lead">这是"地基诊断"图：回答<strong>四种原始架构在失配下到底能不能达标</strong>。</p>
+  <table>
+    <tr><th>图号</th><th>文件名</th><th>类型</th><th>横轴 / 纵轴</th><th>它说明什么（用途）</th></tr>
+    <tr><td>01</td><td>01_DNL_P99.svg</td><td><span class="tag diag">诊断</span></td><td>4 架构 × (CAL0/CAL1) ／ DNL P99 [LSB]</td><td>1000 颗里 DNL 最坏 1% 的值。<strong>超标或显示 INVALID</strong> 即该架构不达标，是第一道否决哨兵。</td></tr>
+    <tr><td>01</td><td>01_INL_P99.svg</td><td><span class="tag diag">诊断</span></td><td>同上 ／ INL P99 [LSB]</td><td>INL 最坏 1% 是否 < 4 LSB。</td></tr>
+    <tr><td>03</td><td>03_missing_code_yield.svg</td><td><span class="tag diag">诊断</span></td><td>架构×模式 ／ 零缺码良率 %</td><td>有没有"缺码"（塌缩区间）。16-bit 要求零缺码。</td></tr>
+    <tr><td>04</td><td>04_spec_pass_yield.svg</td><td><span class="tag diag">诊断</span></td><td>架构×模式 ／ 联合规格达标良率 %</td><td>DNL+INL+零缺码+单调<strong>同时满足</strong>的比例，最终判据。</td></tr>
+    <tr><td>05</td><td>05_monotonic_yield.svg</td><td><span class="tag diag">诊断</span></td><td>架构×模式 ／ 单调输出良率 %</td><td>非单调架构（Split/Current 系）会直接失败——解释为何冗余只能加在单调架构上。</td></tr>
+    <tr><td>06</td><td>06_capacitance_and_decisions.svg</td><td><span class="tag sel">权衡</span></td><td>架构 ／ 总电容 log10(pF)</td><td>面积代价对比：Current 65.55pF/19级，BWA 153.6pF，CBW/SBW ≈19.7nF（过大）。</td></tr>
+    <tr><td>07</td><td>07_reachable_regions.svg</td><td><span class="tag diag">诊断</span></td><td>可达判决区间 ／ 覆盖芯片经验 CDF</td><td>65536 个输出码要求至少 65536 个可达区间；非单调架构达不到，从原理上判死。</td></tr>
+    <tr><td>08</td><td>08_static_regression.svg</td><td><span class="tag diag">诊断</span></td><td>架构 ／ 历史 STATIC DAC DNL P99</td><td>只做静态 DAC 回归（MATLAB 10k vs 历史 100k），<strong>不是完整 ADC 结果</strong>，防误读。</td></tr>
+    <tr><td>R×12</td><td>representative_*_CAL1_{median,P99,worst}_chipN.svg</td><td><span class="tag rep">代表芯片</span></td><td>Code ／ INL+DNL [LSB]（单调）或 码占用率（非单调）</td><td>4 架构（Current/CBW/BWA/SBW）× 3 代表芯片（中位/P99/最差）的码曲线。直观看"最坏芯片长什么样"，论证非单调架构为什么 INL/DNL 未定义、必然失败。</td></tr>
+  </table>
+
+  <h3>② Phase 4–8 · calibration_architecture_study_p4_8/figures/ （14 张）</h3>
+  <p class="lead">这是"冗余变体 + 现实校准"图：回答<strong>加上冗余、加上有限字长/噪声后，谁还能达标</strong>。</p>
+  <table>
+    <tr><th>图号</th><th>文件名</th><th>类型</th><th>横轴 / 纵轴</th><th>它说明什么（用途）</th></tr>
+    <tr><td>01</td><td>01_DNL_P99.svg</td><td><span class="tag diag">诊断</span></td><td>候选架构序列 ／ CAL1 P99 DNL（log）</td><td>把决赛候选与 Phase 0–3 四架构混排对比，一眼看出谁进 1 LSB 红线。</td></tr>
+    <tr><td>02</td><td>02_INL_P99.svg</td><td><span class="tag diag">诊断</span></td><td>同上 ／ CAL1 P99 INL（log）</td><td>同上，看 4 LSB 红线。</td></tr>
+    <tr><td>03</td><td>03_missing_code_yield.svg</td><td><span class="tag diag">诊断</span></td><td>候选 ／ 零缺码良率</td><td>冗余是否真的消除了缺码（对比 0.99 线）。</td></tr>
+    <tr><td>04</td><td>04_spec_pass_yield.svg</td><td><span class="tag diag">诊断</span></td><td>候选 ／ 联合达标良率</td><td>最终达标率排序，BWAR-final 冲到 100%。</td></tr>
+    <tr><td>05</td><td>05_coeff_bits_vs_DNL.svg</td><td><span class="tag cal">校准精度</span></td><td>系数位宽 bits ／ max|DNL|（log）</td><td>CAL2 有限字长需求：多少 bit 能把 DNL 压进 1 LSB。</td></tr>
+    <tr><td>06</td><td>06_coeff_bits_vs_INL.svg</td><td><span class="tag cal">校准精度</span></td><td>bits ／ max|INL| 与 达标良率（log）</td><td>位宽 vs INL/良率联合，定字长下界。</td></tr>
+    <tr><td>07</td><td>07_cal_error_vs_DNL.svg</td><td><span class="tag cal">校准精度</span></td><td>估计误差(LSB/%) ／ max|DNL|（log）</td><td>权重估计误差容忍度：任何非零误差都会造成局部非单调（INL=Inf 哨兵）。</td></tr>
+    <tr><td>08</td><td>08_cal_error_vs_INL.svg</td><td><span class="tag cal">校准精度</span></td><td>估计误差 ／ max|INL| 与 良率（log）</td><td>误差口径下 INL/良率边界，论证"达标率才是主判据"。</td></tr>
+    <tr><td>09</td><td>09_cap_vs_DNL.svg</td><td><span class="tag sel">权衡</span></td><td>总电容 pF ／ 校准后 P99 DNL（log）</td><td>面积 vs 性能：大电容架构（CBW/SBW）DNL 反而坏，反过来衬托 BWAR。</td></tr>
+    <tr><td>10</td><td>10_cap_vs_INL.svg</td><td><span class="tag sel">权衡</span></td><td>总电容 ／ P99 INL（log）</td><td>同上，INL 视角。</td></tr>
+    <tr><td>11</td><td>11_complexity_vs_yield.svg</td><td><span class="tag sel">权衡</span></td><td>校准系数个数 ／ 达标良率</td><td>校准复杂度 vs 收益，辅助最终选型打分。</td></tr>
+    <tr><td>12</td><td>12_redundancy_margin_by_decision.svg</td><td><span class="tag diag">诊断</span></td><td>判决级 ／ 该级最小裕度 [LSB]</td><td>裕度剖面：逐 bit 的判决窗口余量，找出最危险的判决级（设计冗余的落脚点）。</td></tr>
+    <tr><td>13</td><td>13_BWAR_representative_INL.svg</td><td><span class="tag rep">代表芯片</span></td><td>Code ／ INL [LSB]（±4 带）</td><td>BWAR-final 的 median/P99/worst 三颗 INL 曲线，证明达标且裕度充足。</td></tr>
+  </table>
+
+  <h3>③ Phase A/B/C · bwar_implementation_refinement/figures/ （11 张，Fig1–11）</h3>
+  <p class="lead">这是"实现精炼"图：回答<strong>把非整数桥 1.949Cu 收敛到整数桥 Cb=2Cu 后，还能不能达标、代价多大</strong>。</p>
+  <table>
+    <tr><th>图号</th><th>文件名</th><th>类型</th><th>横轴 / 纵轴</th><th>它说明什么（用途）</th></tr>
+    <tr><td>Fig1</td><td>Fig1_Cb_vs_best_yield.svg</td><td><span class="tag sel">权衡</span></td><td>整数桥 Cb [Cu] ／ 最佳 CAL1 达标良率</td><td>粗扫：哪个整数 Cb 良率最高（红线 0.999），锁定 Cb=2。</td></tr>
+    <tr><td>Fig2</td><td>Fig2_Cb_vs_best_DNL.svg</td><td><span class="tag sel">权衡</span></td><td>Cb ／ 最佳 DNL99（yield≥95%）</td><td>整数 Cb vs DNL 折中（红线 0.8/1），说明整数桥几乎不损失精度。</td></tr>
+    <tr><td>Fig3</td><td>Fig3_lowR1_vs_DNL.svg</td><td><span class="tag sel">权衡</span></td><td>lowR1 [Cu] ／ DNL99</td><td>精细搜索：LOW 段冗余量 vs DNL，在 99% 良率候选上做。</td></tr>
+    <tr><td>Fig4</td><td>Fig4_cap_vs_DNL_pareto.svg</td><td><span class="tag sel">权衡</span></td><td>总电容 pF ／ DNL99</td><td>Pareto 散点：候选+探针+旧基准+验证版同图比较，找"电容最小且达标"。</td></tr>
+    <tr><td>Fig5</td><td>Fig5_CAL1_DNL_vs_cap.svg</td><td><span class="tag sel">权衡</span></td><td>总电容 ／ CAL1 DNL99</td><td>同上单轴散点，定"实现版最小电容"这一结论。</td></tr>
+    <tr><td>Fig6</td><td>Fig6_Navg_vs_sigma.svg</td><td><span class="tag ver">验证</span></td><td>平均次数 Navg ／ 校准估计 sigma（log）</td><td>验证"平均律" σ_cal ∝ 1/√Navg：实测点贴着 1/√N 理论线。</td></tr>
+    <tr><td>Fig7</td><td>Fig7_Navg_vs_yield.svg</td><td><span class="tag ver">验证</span></td><td>Navg（log）／ CAL2 达标良率</td><td>多次平均能把 CAL2 良率拉到 >99%，定 Navg 取值。</td></tr>
+    <tr><td>Fig8</td><td>Fig8_noise_x_Navg.svg</td><td><span class="tag ver">验证</span></td><td>σ_meas·√Navg ／ 达标良率</td><td>"崩溃测试"：用 σ·√N 归一化，验证噪声被平均有效压制。</td></tr>
+    <tr><td>Fig9</td><td>Fig9_bits_vs_yield.svg</td><td><span class="tag cal">校准精度</span></td><td>系数位宽 bits ／ CAL2 达标良率</td><td>FULL 权重编码 vs 误差专用(ERR)编码对比，定字长方案。</td></tr>
+    <tr><td>Fig10</td><td>Fig10_offset_vs_yield.svg</td><td><span class="tag ver">验证</span></td><td>残余比较器 offset [LSB] ／ 达标良率</td><td>比较器残余失调的鲁棒性，证明对 offset 不敏感。</td></tr>
+    <tr><td>Fig11</td><td>Fig11_old_vs_new.svg</td><td><span class="tag sel">权衡</span></td><td>候选 ／ 总电容 pF</td><td>旧 BWAR-final(229pF) vs 实现版(最佳良率/最小电容)对比，收尾结论图。</td></tr>
+  </table>
+
+  <h2>三、按"用途"重新归类（理解整体叙事）</h2>
+  <div class="card">
+    <p><span class="tag diag">诊断类</span> 01_DNL/INL_P99、03/04/05 良率、07 可达区间、08 静态回归、12 裕度剖面、representative 曲线。<strong>作用：判定"谁达标、谁死、为什么死"。</strong></p>
+    <p><span class="tag cal">校准精度类</span> 05–08（p4_8 的 coeff_bits / cal_error 四张）、Fig9（bwar bits）。<strong>作用：定 CAL2 有限字长与权重估计误差的真实下界。</strong></p>
+    <p><span class="tag sel">选型权衡类</span> 06 电容、09/10 电容-vs-指标、11 复杂度、Fig1–5/11。<strong>作用：在"性能↔面积↔复杂度"三角里选最优并实现收敛。</strong></p>
+    <p><span class="tag ver">验证类</span> Fig6–8（平均律/噪声）、Fig10（offset 鲁棒）。<strong>作用：证明推荐方案在真实非理想条件下仍稳。</strong></p>
+    <p><span class="tag rep">代表芯片类</span> representative_*（Phase0-3）、13_BWAR_representative_INL。<strong>作用：把统计数字落到"具体某颗芯片的曲线"，让人信服最坏情况也 OK。</strong></p>
+  </div>
+
+  <h2>四、这些图合起来"讲了一个什么故事"</h2>
+  <div class="key">
+    <p>整套图的叙事是<strong>层层递进的"否证 + 收敛"</strong>：</p>
+    <ol>
+      <li><strong>先否证</strong>：Phase 0–3 的诊断图（01–05、07、representative）证明四种<em>原始</em>架构在 σ_u≈1.63% 失配下全都不达标——非单调架构连 INL 都无定义（05/07），单调架构 DNL 超标。</li>
+      <li><strong>再找可行点</strong>：Phase 4–8 的冗余变体 + 现实校准图（01–04 达标率、05–08 精度预算、09–11 权衡、13 代表曲线）筛出唯一达标者 <strong>BWAR-final</strong>（229pF，100% 良率，DNL99=0.98）。</li>
+      <li><strong>最后收敛到可版图实现</strong>：Phase A/B/C 的 Fig1–5/11 把非整数桥 1.949Cu 收敛到整数桥 Cb=2Cu，Fig6–10 验证平均/噪声/offset 鲁棒性，结论：整数桥版仍 ≥99% 良率、DNL99≈0.93，<strong>消除版图障碍</strong>。</li>
+    </ol>
+    <p>每张图都不是装饰：横轴是"设计自变量"（电容、位宽、误差、Cb、Navg…），纵轴是"规格判据"（DNL/INL/良率），<strong>红线/虚线就是 16-bit 规格门槛</strong>。读图 = 读"离门槛还有多远"。</p>
+  </div>
+
+  <h2>五、怎么自己看这些图</h2>
+  <p>所有图都是纯 SVG 文件，直接用浏览器打开即可（无需 MATLAB）。路径：</p>
+  <ul>
+    <li><code>calibration_architecture_study/figures/*.svg</code></li>
+    <li><code>calibration_architecture_study_p4_8/figures/*.svg</code></li>
+    <li><code>bwar_implementation_refinement/figures/Fig*.svg</code></li>
+  </ul>
+  <p class="note">生成逻辑在源码里：<code>make_figures_svg.m</code>（地基）、<code>svgfig.m</code> + <code>write_phase4_outputs.m</code> + <code>main_phase48.m</code>（Phase4–8）、<code>finalize_impl_report.m</code>（bwar）。已加中文注释，可对照阅读。</p>
+
+  <footer>
+    分析对象：D:\模拟学习\results 下三个 SAR ADC CDAC 校准研究项目。统计口径为去重后的真实出图（不含 reruns 与 .comment_backup 副本）。本页由代码反查生成函数与坐标轴后整理。
+  </footer>
+</div>
+</body>
+</html>

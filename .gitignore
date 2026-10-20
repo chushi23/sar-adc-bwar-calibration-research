@@ -1,0 +1,18 @@
+# 原始 MC 数据（体积大，可按各子目录 README 一键重新生成）
+*.mat
+
+# MATLAB 偏好/日志目录（含机器相关文件）
+**/matlab_prefs/
+**/reruns/
+
+# 证书与密钥（绝不入库）
+*.p12
+*.pem
+
+# 备份目录
+.comment_backup/
+.workbuddy/
+
+# 系统文件
+Thumbs.db
+.DS_Store

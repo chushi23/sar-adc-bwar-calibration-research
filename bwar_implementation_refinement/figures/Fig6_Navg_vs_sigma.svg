@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" font-family="Segoe UI,Arial,sans-serif" font-size="13">
+<rect width="900" height="560" fill="white"/>
+<text x="74" y="26" font-size="16" font-weight="600" fill="#222">Navg vs calibration estimation sigma (meas 0.1 LSB)</text>
+<rect x="74" y="44" width="808" height="458" fill="none" stroke="#777"/>
+<line x1="74" y1="502.0" x2="882" y2="502.0" stroke="#e8e8e8"/>
+<text x="68" y="502.0" text-anchor="end" dominant-baseline="middle" fill="#444">0.00431</text>
+<line x1="74" y1="410.4" x2="882" y2="410.4" stroke="#e8e8e8"/>
+<text x="68" y="410.4" text-anchor="end" dominant-baseline="middle" fill="#444">0.00808</text>
+<line x1="74" y1="318.8" x2="882" y2="318.8" stroke="#e8e8e8"/>
+<text x="68" y="318.8" text-anchor="end" dominant-baseline="middle" fill="#444">0.0152</text>
+<line x1="74" y1="227.2" x2="882" y2="227.2" stroke="#e8e8e8"/>
+<text x="68" y="227.2" text-anchor="end" dominant-baseline="middle" fill="#444">0.0284</text>
+<line x1="74" y1="135.6" x2="882" y2="135.6" stroke="#e8e8e8"/>
+<text x="68" y="135.6" text-anchor="end" dominant-baseline="middle" fill="#444">0.0533</text>
+<line x1="74" y1="44.0" x2="882" y2="44.0" stroke="#e8e8e8"/>
+<text x="68" y="44.0" text-anchor="end" dominant-baseline="middle" fill="#444">0.1</text>
+<line x1="74.0" y1="44" x2="74.0" y2="502" stroke="#e8e8e8"/>
+<text x="74.0" y="520" text-anchor="middle" fill="#444">1</text>
+<line x1="208.7" y1="44" x2="208.7" y2="502" stroke="#e8e8e8"/>
+<text x="208.7" y="520" text-anchor="middle" fill="#444">86.2</text>
+<line x1="343.3" y1="44" x2="343.3" y2="502" stroke="#e8e8e8"/>
+<text x="343.3" y="520" text-anchor="middle" fill="#444">171</text>
+<line x1="478.0" y1="44" x2="478.0" y2="502" stroke="#e8e8e8"/>
+<text x="478.0" y="520" text-anchor="middle" fill="#444">256</text>
+<line x1="612.7" y1="44" x2="612.7" y2="502" stroke="#e8e8e8"/>
+<text x="612.7" y="520" text-anchor="middle" fill="#444">342</text>
+<line x1="747.3" y1="44" x2="747.3" y2="502" stroke="#e8e8e8"/>
+<text x="747.3" y="520" text-anchor="middle" fill="#444">427</text>
+<line x1="882.0" y1="44" x2="882.0" y2="502" stroke="#e8e8e8"/>
+<text x="882.0" y="520" text-anchor="middle" fill="#444">512</text>
+<text x="478" y="546" text-anchor="middle" fill="#222">Navg</text>
+<text x="18" y="273" text-anchor="middle" fill="#222" transform="rotate(-90 18 273)">sigma_cal [LSB]</text>
+<circle cx="74.0" cy="46.9" r="2.6" fill="#1f77b4"/>
+<circle cx="78.7" cy="145.9" r="2.6" fill="#1f77b4"/>
+<circle cx="97.7" cy="247.4" r="2.6" fill="#1f77b4"/>
+<circle cx="123.0" cy="298.9" r="2.6" fill="#1f77b4"/>
+<circle cx="173.6" cy="348.3" r="2.6" fill="#1f77b4"/>
+<circle cx="274.8" cy="397.8" r="2.6" fill="#1f77b4"/>
+<circle cx="477.2" cy="450.7" r="2.6" fill="#1f77b4"/>
+<circle cx="882.0" cy="502.0" r="2.6" fill="#1f77b4"/>
+<polyline points="74.0,44.0 78.7,144.9 97.7,245.9 123.0,296.3 173.6,346.8 274.8,397.3 477.2,447.7 882.0,498.2 " fill="none" stroke="#d62728" stroke-width="2"/>
+<circle cx="84" cy="60" r="4" fill="#1f77b4"/><circle cx="106" cy="60" r="4" fill="#1f77b4"/>
+<text x="112" y="64" fill="#222">measured</text>
+<line x1="84" y1="79" x2="106" y2="79" stroke="#d62728" stroke-width="3"/>
+<text x="112" y="83" fill="#222">1/sqrt(N)</text>
+</svg>

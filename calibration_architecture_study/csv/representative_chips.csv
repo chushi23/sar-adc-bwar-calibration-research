@@ -1,0 +1,13 @@
+architecture,selection,rule,chip,seed,valid_thresholds,missing
+Current,median,CAL1 missing count (DNL invalid),935,26202435,0,25007
+Current,P99,CAL1 missing count (DNL invalid),105,26201605,0,26309
+Current,worst,CAL1 missing count (DNL invalid),790,26202290,0,26875
+CBW,median,CAL1 max DNL,272,26301772,1,619
+CBW,P99,CAL1 max DNL,203,26301703,1,339
+CBW,worst,CAL1 max DNL,746,26302246,1,493
+BWA,median,CAL1 max DNL,754,26402254,1,2119
+BWA,P99,CAL1 max DNL,479,26401979,1,1118
+BWA,worst,CAL1 max DNL,736,26402236,1,1598
+SBW,median,CAL1 missing count (DNL invalid),189,26501689,1,424
+SBW,P99,CAL1 missing count (DNL invalid),679,26502179,0,935
+SBW,worst,CAL1 missing count (DNL invalid),750,26502250,1,1276

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三项目代码解读 · 16-bit SAR ADC CDAC 校准架构研究</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --panel:#ffffff; --ink:#1f2933; --sub:#52606d;
+    --line:#e4e7eb; --accent:#2563eb; --accent2:#0f766e; --warn:#b45309;
+    --green:#15803d; --red:#b91c1c; --code-bg:#f1f5f9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",Helvetica,Arial,sans-serif;
+    line-height:1.7;font-size:15px}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
+  h1{font-size:30px;line-height:1.25;margin:0 0 8px}
+  h2{font-size:23px;margin:42px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+  h3{font-size:18px;margin:28px 0 10px;color:var(--accent2)}
+  h4{font-size:15px;margin:18px 0 6px;color:var(--sub)}
+  p{margin:10px 0}
+  code{background:var(--code-bg);padding:1px 6px;border-radius:4px;font-size:13px;
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+  pre{background:#0f172a;color:#e2e8f0;padding:14px 16px;border-radius:8px;overflow:auto;
+    font-size:12.5px;line-height:1.55}
+  pre .c{color:#7dd3fc} pre .k{color:#fca5a5} pre .f{color:#fcd34d}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13.5px;
+    background:var(--panel);box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#eef2f7;font-weight:600}
+  tr:nth-child(even) td{background:#fafbfc}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:18px 20px;margin:16px 0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .tag{display:inline-block;background:var(--accent);color:#fff;border-radius:6px;
+    padding:2px 9px;font-size:12px;margin-right:6px;font-weight:600}
+  .tag.teal{background:var(--accent2)} .tag.amber{background:var(--warn)}
+  .tag.green{background:var(--green)} .tag.red{background:var(--red)}
+  .lead{font-size:16px;color:var(--sub)}
+  .svgbox{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:10px;margin:16px 0;text-align:center}
+  .svgbox svg{width:100%;height:auto;max-width:760px}
+  .note{border-left:4px solid var(--accent);background:#eff6ff;padding:10px 14px;
+    border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+  .note.warn{border-left-color:var(--warn);background:#fffbeb}
+  .note.teal{border-left-color:var(--accent2);background:#f0fdfa}
+  ul{margin:8px 0 8px 4px;padding-left:22px} li{margin:5px 0}
+  .muted{color:var(--sub);font-size:13px}
+  .mini{font-size:12.5px;color:var(--sub);margin-top:4px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .pill{font-family:monospace;background:#eef2f7;border:1px solid var(--line);
+    border-radius:4px;padding:0 5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>16-bit SAR ADC CDAC 校准架构研究 — 三项目代码解读</h1>
+<p class="lead">本目录包含三个相互承接的 MATLAB 工程。它们研究同一件事：在<b>单位电容随机失配</b>下，
+四种 16-bit SAR ADC 的电容 DAC（CDAC）架构能否靠<b>前台数字校准</b>（CAL0/CAL1/CAL2）达到 16-bit 规格
+（DNL&lt;1 LSB、INL&lt;4 LSB、零缺码、单调）。三个项目是<b>同一研究的三个阶段</b>，后一阶段通过
+<code>addpath</code> 只读复用前一阶段的引擎代码，逐步收敛到最终可版图实现的方案。</p>
+
+<div class="card">
+<b>三项目一句话定位</b>
+<table>
+<tr><th>目录</th><th>阶段</th><th>作者</th><th>做什么</th><th>关键产出</th></tr>
+<tr>
+<td><code>calibration_architecture_study</code></td>
+<td>Phase 0–3（地基）</td><td>Codex</td>
+<td>建立四架构仿真引擎 + 原始架构基准</td>
+<td>校准引擎、CAL0 静态回归、四架构 MC 基准</td></tr>
+<tr>
+<td><code>calibration_architecture_study_p4_8</code></td>
+<td>Phase 4–8（选型）</td><td>ZCode</td>
+<td>加冗余变体 + CAL2 有限字长 + 动态敏感性 + 选型</td>
+<td>推荐 <b>BWAR-final</b></td></tr>
+<tr>
+<td><code>bwar_implementation_refinement</code></td>
+<td>Phase A/B/C（精炼）</td><td>ZCode</td>
+<td>把非整数桥 1.949Cu 收敛到整数桥（Cb=2Cu）可实现方案</td>
+<td>整数桥可行候选 + CAL2/编码/offset 行为模型</td></tr>
+</table>
+</div>
+
+<!-- ============ 演进链 ============ -->
+<h2>一、三项目演进链与代码复用关系</h2>
+<p>三个项目不是互相独立的代码库，而是<b>一条继承链</b>。关键在于：每一阶段都<b>不修改</b>前一阶段的任何文件，
+而是用 <code>addpath(genpath(...))</code> 把前一阶段的 <code>matlab/</code> 加进 MATLAB 路径，直接调用其已验证的函数。</p>
+
+<div class="svgbox">
+<svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <!-- boxes -->
+  <rect x="20" y="40" width="200" height="120" rx="10" fill="#eef2f7" stroke="#2563eb" stroke-width="2"/>
+  <text x="120" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2933">Phase 0–3</text>
+  <text x="120" y="88" text-anchor="middle" font-size="11" fill="#52606d">calibration_</text>
+  <text x="120" y="103" text-anchor="middle" font-size="11" fill="#52606d">architecture_study</text>
+  <text x="120" y="124" text-anchor="middle" font-size="10.5" fill="#0f766e">核心引擎（只读复用源）</text>
+  <text x="120" y="142" text-anchor="middle" font-size="10.5" fill="#b45309">4 架构 · 基准 MC</text>
+
+  <rect x="260" y="40" width="200" height="120" rx="10" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+  <text x="360" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2933">Phase 4–8</text>
+  <text x="360" y="88" text-anchor="middle" font-size="11" fill="#52606d">calibration_</text>
+  <text x="360" y="103" text-anchor="middle" font-size="11" fill="#52606d">architecture_study_p4_8</text>
+  <text x="360" y="124" text-anchor="middle" font-size="10.5" fill="#0f766e">广义引擎 + 变体</text>
+  <text x="360" y="142" text-anchor="middle" font-size="10.5" fill="#b45309">推荐 BWAR-final</text>
+
+  <rect x="500" y="40" width="200" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="600" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2933">Phase A/B/C</text>
+  <text x="600" y="88" text-anchor="middle" font-size="11" fill="#52606d">bwar_implementation</text>
+  <text x="600" y="103" text-anchor="middle" font-size="11" fill="#52606d">_refinement</text>
+  <text x="600" y="124" text-anchor="middle" font-size="10.5" fill="#0f766e">整数桥收敛</text>
+  <text x="600" y="142" text-anchor="middle" font-size="10.5" fill="#b45309">可实现性精炼</text>
+
+  <line x1="220" y1="100" x2="256" y2="100" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="460" y1="100" x2="496" y2="100" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="238" y="92" text-anchor="middle" font-size="10" fill="#2563eb">addpath</text>
+  <text x="478" y="92" text-anchor="middle" font-size="10" fill="#2563eb">addpath</text>
+
+  <!-- reuse arrows into shared engine -->
+  <rect x="20" y="200" width="680" height="70" rx="10" fill="#fff" stroke="#e4e7eb" stroke-width="1.5"/>
+  <text x="32" y="222" font-size="12" font-weight="700" fill="#52606d">共享/只读复用的核心函数（位于 Phase 0–3 的 matlab/）</text>
+  <text x="32" y="244" font-size="11" fill="#1f2933">network_weights · architecture_definition · adc_metrics · quantile_linear · realize/transfer 引擎 · run_mc 工具</text>
+  <text x="32" y="262" font-size="11" fill="#1f2933">→ p4_8 的 realize_variant / transfer_tree_gen / main_phase48 直接调用它们；bwar 的 run_mc_impl 同样复用</text>
+</svg>
+</div>
+
+<div class="note teal">
+<b>复用地基的工程纪律（从 config 文件可见）：</b>
+<code>config_p48.m</code> 第 5–7 行把 <code>calibration_architecture_study/matlab</code> 加进路径；
+<code>config_impl.m</code> 第 8–10 行把 <b>两个</b>前序目录都加进来。三套配置都显式声明：
+“Reuses … read-only via addpath; never writes there.” 所有新产物只写进自己的 <code>raw/csv/figures/reports</code> 目录。
+</div>
+
+<!-- ============ 共享引擎 ============ -->
+<h2>二、共享核心引擎（Phase 0–3）的实现</h2>
+<p>这是整个研究的“物理内核”。它把一套 ADC CDAC 抽象成<b>电容网络 + 比较器判决树</b>，用精确区间传播算出
+每个输入电压对应的输出码，再统计 DNL/INL/缺码/单调。下面逐文件说明它如何实现。</p>
+
+<h3>2.1 电容网络 → 节点方程（<code>network_weights.m</code>）</h3>
+<p>所有的电容被分到若干<b>节点</b>（<code>seg</code> 数组标定段号），节点之间用<b>桥电容</b>耦合。求解的是节点电压
+<code>g</code>：</p>
+<pre><span class="c">% network_weights(a,cap,bridge)  值单位为 Cu</span>
+nnode = max(a.seg);
+totals = accumarray(a.seg(:), cap(:), [nnode 1]);   <span class="c">% 每段物理电容总和</span>
+C = diag(totals);                                    <span class="c">% 节点导纳对角</span>
+<span class="k">for</span> j = 1:numel(bridge)
+    v = zeros(nnode,1); v(j)=1; v(j+1)=-1;
+    C = C + bridge(j)*(v*v');                        <span class="c">% 桥电容加非对角耦合</span>
+<span class="k">end</span>
+e = zeros(nnode,1); e(1) = 1;
+g = C \ e;                                           <span class="c">% 解 C·g = e_TOP</span>
+w = reshape(cap,1,[]) .* reshape(g(a.seg),1,[]);     <span class="c">% 每个电容的有效权重 = cap × 所处节点 g</span></pre>
+<p>这正是<b>拉普拉斯节点方程</b>：把 TOP 节点驱动到单位电压，解出的各节点电压 <code>g</code> 乘以各电容自身容值，
+就得到每个电容在二进制权重意义上的“有效权重”。桥电容把相邻节点耦合起来（BWA 的 8+8 桥、Current 的两级桥），
+是实现分段衰减的关键。这一步是整个仿真的<b>物理基础</b>，p4_8 与 bwar 都直接复用它。</p>
+
+<h3>2.2 四架构拓扑（<code>architecture_definition.m</code>）</h3>
+<p>四个架构靠 <code>cap</code>（电容数组）、<code>seg</code>（段归属）、<code>bridge</code>（桥电容）、<code>convention</code>（判决约定）来区分：</p>
+<table>
+<tr><th>架构</th><th>约定</th><th>判决数</th><th>结构要点</th><th>总电容</th></tr>
+<tr><td><code>Current</code></td><td>fullstep</td><td>19</td><td>三段二进制（19 个电容，含 3 个冗余 r12/r8/r4 与 2 个桥），域 ±1.024V</td><td>65.55 pF</td></tr>
+<tr><td><code>CBW</code></td><td>monotonic</td><td>16</td><td>纯二进制 1..256 + dummy，无桥</td><td>19660.8 pF</td></tr>
+<tr><td><code>BWA</code></td><td>monotonic</td><td>16</td><td>下半 8 位 + 上半 8 位 + dummy，桥 Cb=256/255（8+8 桥）</td><td>153.60 pF</td></tr>
+<tr><td><code>SBW</code></td><td>monotonic</td><td>16</td><td>上下两段各一份二进制，条件 U/L 切换</td><td>19660.8 pF</td></tr>
+</table>
+
+<div class="svgbox">
+<svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+  <text x="360" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2933">四种 CDAC 拓扑（电容数组示意）</text>
+  <!-- Current -->
+  <rect x="20" y="50" width="160" height="150" rx="8" fill="#eef2f7" stroke="#2563eb"/>
+  <text x="100" y="70" text-anchor="middle" font-size="12" font-weight="700">Current</text>
+  <text x="100" y="92" text-anchor="middle" font-size="10">MSB 段: 64 32 16 8 8 4 2 1</text>
+  <text x="100" y="110" text-anchor="middle" font-size="10">M2 段:  8 8 4 2 1</text>
+  <text x="100" y="128" text-anchor="middle" font-size="10">LSB 段: 16 8 8 4 2 1</text>
+  <text x="100" y="150" text-anchor="middle" font-size="10" fill="#b45309">桥 Cb1, Cb2</text>
+  <text x="100" y="172" text-anchor="middle" font-size="10">fullstep ±</text>
+  <text x="100" y="190" text-anchor="middle" font-size="10">域 ±1.024V</text>
+  <!-- CBW -->
+  <rect x="200" y="50" width="160" height="150" rx="8" fill="#f0fdfa" stroke="#0f766e"/>
+  <text x="280" y="70" text-anchor="middle" font-size="12" font-weight="700">CBW</text>
+  <text x="280" y="92" text-anchor="middle" font-size="10">1 2 4 8 16 32 64 128</text>
+  <text x="280" y="110" text-anchor="middle" font-size="10">256 + dummy</text>
+  <text x="280" y="132" text-anchor="middle" font-size="10" fill="#b45309">无桥</text>
+  <text x="280" y="154" text-anchor="middle" font-size="10">纯二进制单调</text>
+  <text x="280" y="176" text-anchor="middle" font-size="10">域 [0,1]</text>
+  <!-- BWA -->
+  <rect x="380" y="50" width="160" height="150" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="460" y="70" text-anchor="middle" font-size="12" font-weight="700">BWA</text>
+  <text x="460" y="92" text-anchor="middle" font-size="10">LOW: 1..128 + d</text>
+  <text x="460" y="110" text-anchor="middle" font-size="10">TOP: 1..128 + d</text>
+  <text x="460" y="132" text-anchor="middle" font-size="10" fill="#b45309">桥 256/255</text>
+  <text x="460" y="154" text-anchor="middle" font-size="10">8+8 桥结构</text>
+  <text x="460" y="176" text-anchor="middle" font-size="10">域 [0,1]</text>
+  <!-- SBW -->
+  <rect x="560" y="50" width="140" height="150" rx="8" fill="#f0fdfa" stroke="#0f766e"/>
+  <text x="630" y="70" text-anchor="middle" font-size="12" font-weight="700">SBW</text>
+  <text x="630" y="92" text-anchor="middle" font-size="10">U: 1..64 +1</text>
+  <text x="630" y="110" text-anchor="middle" font-size="10">L: 1..64 +1</text>
+  <text x="630" y="132" text-anchor="middle" font-size="10" fill="#b45309">条件 U/L</text>
+  <text x="630" y="154" text-anchor="middle" font-size="10">域 [0,1]</text>
+  <text x="360" y="222" text-anchor="middle" font-size="10.5" fill="#52606d">注：数值为各电容的 Cu（单位电容）倍数；桥电容实现段间精确衰减比</text>
+</svg>
+</div>
+
+<h3>2.3 失配建模与“每颗芯片”（<code>realize_architecture.m</code>）</h3>
+<p>单位电容失配遵循标准 <b>√(面积) 律</b>：电容越大、相对波动越小。</p>
+<pre>cap = a.cap + cfg.sigma*sqrt(a.cap).*randn(st,2,numel(a.cap));
+bridge = a.bridge + cfg.sigma*sqrt(a.bridge).*randn(st,2,numel(a.bridge));</pre>
+<p>其中 <code>cfg.sigma = sqrt(K_fF/Cu_fF) = sqrt(0.0399818695/150) ≈ 1.6326%</code> 是单位失配 σ_u。
+每颗芯片用<b>可复现随机流</b>：<code>seed = seedMC + 100000·archIndex + chip</code>（<code>mt19937ar</code>），
+P/N 两侧独立抽取。P/N 侧权重取平均得到该芯片的“真实权重”，再经 <code>network_weights</code> 解算。
+<code>chip=0</code> 表示无失配的<b>名义（nominal）</b>芯片。</p>
+
+<h3>2.4 精确判决树 / 传输函数（<code>transfer_tree.m</code> vs <code>sar_convert.m</code>）</h3>
+<p>这是把“模拟 SAR 过程”转成“数字区间集合”的核心。不再逐点扫描输入电压，而是<b>从根区间出发，
+每级判决把当前存活区间一分为二</b>，并记录每个叶子区间对应的决策比特与最终码。这样做精确且无网格误差。</p>
+<pre><span class="c">% transfer_tree：区间精确传播</span>
+<span class="k">for</span> k = 1:a.decisions
+    <span class="k">if</span> monotonic
+        threshold = state + real.weights(j);   <span class="c">% 单调约定：d=1 推进，d=0 保持</span>
+        statePair = [state; threshold];
+    <span class="k">else</span> <span class="c">% fullstep (Current)</span>
+        threshold = state;
+        statePair = [state - w; state + w];      <span class="c">% 全步约定：d=1 +w，d=0 -w</span>
+    <span class="k">end</span>
+    loPair = [lo; max(lo,threshold)]; hiPair = [min(hi,threshold); hi];
+    valid  = hi - lo &gt; widthTolerance;           <span class="c">% 死去的分支（区间塌缩）被丢弃</span>
+<span class="k">end</span></pre>
+<p>两种 <b>判决约定</b>是整个研究最重要的分类：</p>
+<ul>
+<li><span class="tag teal">monotonic</span> CBW / BWA / SBW / BWAR：每级只把“命中阈值”一侧的区间前推，另一侧保持。分支 0 永远不会死。</li>
+<li><span class="tag amber">fullstep</span> Current：每级把区间向两侧对称的 ±w 分开（二分搜索式），两侧都可能死。</li>
+</ul>
+<p>研究的关键结论之一正源于此：Current 的 fullstep 在主位二进制减半链上<b>不允许插入任何冗余位</b>（分裂健康递推
+<code>M(k+1)=min(w_k, H_k−w_k)</code>），而单调族的端节点“哑金（end-gold）”噪声是全局量、无法用固定判决域消除——这决定了冗余只能加在单调架构（BWA→BWAR）上。</p>
+<p><code>sar_convert.m</code> 是<b>独立的逐点直接转换</b>，专门用来交叉验证区间算法（在测试 <code>test_ideal_16bit_binary</code> 等中做一致性门）。</p>
+
+<h3>2.5 指标与失败哨兵（<code>adc_metrics.m</code>）</h3>
+<pre>width = accumarray(code+1, (hi-lo)', [M 1]);   <span class="c">% 每个码占据的输入区间宽度</span>
+missing = sum(width &lt;= widthTolerance);          <span class="c">% 缺码 = 区间塌缩到 0</span>
+down = sum(diff(code) &lt; 0); monotonic = (down==0);
+<span class="k">if</span> monotonic
+    INL/DNL = endpoint-fit;                       <span class="c">% 端点拟合 LSB</span>
+<span class="k">else</span>
+    dm = Inf; im = Inf;                            <span class="c">% 非单调 → 失败哨兵 Inf</span>
+<span class="k">end</span></pre>
+<p>关键设计：<b>非单调传输的 DNL/INL 一律置 Inf</b>（传统按码排序的 T[k] 对非单调函数无效），这样失败芯片不会污染
+统计、也不会被当成“好芯片”选中。<code>m</code> 行向量为
+<code>[DNL_max, INL_max, missing, monotonic, pass, diagDNL, regions, down]</code>。</p>
+
+<h3>2.6 Monte Carlo 总装（<code>run_mc.m</code> / <code>main_run.m</code>）</h3>
+<p><code>evaluate_die</code> 串起一条芯片的完整链路：<code>architecture_definition → realize → transfer_tree → adc_metrics</code>，
+分别用 <code>code0</code>（CAL0，名义权重解码）和 <code>code1</code>（CAL1，真实权重解码）评估。<code>run_mc</code> 用
+<code>parfor</code>（Threads 并行，可回退串行）跑 n 颗芯片。<code>main_run</code> 是 Phase 0–3 一键入口：先跑硬门测试
+（理想二进制、CAL0 静态回归），再跑名义四架构，再跑 1k/10k MC，最后用 <code>make_figures_svg</code> 出图、写报告。</p>
+
+<div class="note">
+<b>数据列约定（贯穿三项目）</b>：每个 MC 矩阵是 <code>n×16</code> 行，前 8 列为 CAL0 指标、后 8 列为 CAL1 指标，
+列顺序即 <code>adc_metrics</code> 的 <code>m</code>。因此 <code>data(:,5)</code>=CAL0 达标率、<code>data(:,13)</code>=CAL1 达标率、
+<code>data(:,9)</code>=CAL1 DNL99 所用列、<code>data(:,11)</code>=零缺码判据。后续所有 <code>*_mc_impl</code> / <code>run_variant_mc</code>
+都复用同一约定。
+</div>
+
+<!-- ============ p4_8 扩展 ============ -->
+<h2>三、Phase 4–8 的扩展：广义引擎、冗余变体与选型</h2>
+<p>Phase 4–8 在<b>不改动</b>核心引擎的前提下，新增了“变体”层与“有限字长校准 / 动态”层。最关键的扩展是把
+<code>architecture_definition</code> 泛化成 <code>variant_definition</code>，把 <code>transfer_tree</code> 泛化成
+<code>transfer_tree_gen</code>，二者都<b>复用</b> <code>network_weights</code> 与 <code>adc_metrics</code>。</p>
+
+<h3>3.1 广义变体定义（<code>variant_definition.m</code>）</h3>
+<p>新增三个变体：</p>
+<ul>
+<li><code>CurrentR</code>：Current 拓扑但 r 电容可调到 0，并支持 <code>domMatch</code>（域收缩到 ±2·w(MSB)）和
+<code>retune</code>（按实际段总电容重算桥 Cb1/Cb2 使衰减比精确为 1/16、1/32）。</li>
+<li><code>BWAR</code>：BWA + <code>topR</code>（TOP 节点冗余帽）+ <code>lowR1</code>（LOW 节点冗余，需同步重调桥，见下）+ <code>botCap</code>（LSB 端赋权）。
+<b>这是最终推荐的架构。</b></li>
+</ul>
+<p>它用 <code>network_weights</code> 解出有效权重后，按<b>权重降序</b>决定判决顺序 <code>decIdx</code>（哑端永远不判决）。</p>
+
+<div class="note warn">
+<b>桥重调公式（LOW 节点加电容的硬约束）</b>：分压器把 LOW 有效总权钉在 ≈Cb，单纯加 <code>lowR1</code> 会被“吸收”。
+必须重调桥：<code>Leff = L/256</code>，<code>Cb = Leff·L/(L−Leff)</code>，其中 <code>L = 256 + lowR1 + botCap</code>。
+这是 BWAR 能成立的关键技巧，也是后续 bwar 把它收敛为整数桥的起点。
+</div>
+
+<h3>3.2 广义判决树（<code>transfer_tree_gen.m</code>）</h3>
+<p>相比 Phase 0–3 的 <code>transfer_tree</code>，它做了三件事：</p>
+<ol>
+<li>支持两种约定（fullstep / monotonic）统一在一个函数内，并通过 <code>opt.offset</code>（比较器 offset）、
+<code>opt.wScale</code>（settling 缩放）、<code>opt.decoderW</code>（CAL1/CAL2 解码权重）扩展。</li>
+<li>逐层记录 <code>t.margin</code>（判决裕度 M_k）、<code>t.death</code>（该级死去的分支数）、<code>t.alive</code>（存活节点数）——
+这是 Phase 5 诊断与 Phase 7 动态分析的量化基础。</li>
+<li><code>code1</code> 改成“由决策比特 + 解码权重重建”（<code>bitunpack</code> → 累加），与 CAL0 的名义累加解耦，为 CAL2 有限字长铺路。</li>
+</ol>
+
+<h3>3.3 设计搜索与选型（<code>design_search.m</code> / <code>main_phase48.m</code>）</h3>
+<p>Phase 5 的 <code>design_search</code> 是<b>两阶段网格搜索</b>：先名义门（CAL1 零缺码+单调+规格），再过门候选按
+“最坏层裕度”排序挑最优。验证后确认 <b>BWAR-final = topR=10Cu@TOP + lowR1=240Cu@LOW（桥重调）+ botCap=1Cu，
+19 判决，229.18 pF</b>，在 CAL1（oracle 完美位权）下 100%/1000 颗通过（DNL99=0.980、INL99=0.569、零缺码、单调 100%）。</p>
+<p>Phase 4（<code>cal2_eval</code>）扫描 CAL2 有限字长校准：要求绝对估计误差 &lt;0.01 LSB16、相对 &lt;10 ppm、系数字长 ≥24 bit。
+Phase 6 跑 10k 决赛 MC（Finalists：BWAR-final + CurrentR-Z），Phase 7（<code>dynamics_eval</code>）用 offset 精确树平移、
+settling 一阶统一系数、noise 采样统计传输三种模型做动态敏感性，Phase 8 按任务书权重评分 → BWAR-final 唯一过线。</p>
+
+<div class="svgbox">
+<svg viewBox="0 0 720 250" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+  <defs><marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#0f766e"/></marker></defs>
+  <text x="360" y="20" text-anchor="middle" font-size="13" font-weight="700">Phase 4–8 入口 main_phase48('all') 的流水线</text>
+  <rect x="20" y="50" width="120" height="48" rx="8" fill="#eef2f7" stroke="#2563eb"/><text x="80" y="79" text-anchor="middle" font-size="12">Phase5 冗余变体</text>
+  <rect x="160" y="50" width="120" height="48" rx="8" fill="#f0fdfa" stroke="#0f766e"/><text x="220" y="79" text-anchor="middle" font-size="12">Phase4 CAL2</text>
+  <rect x="300" y="50" width="120" height="48" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="360" y="79" text-anchor="middle" font-size="12">Phase6 10k MC</text>
+  <rect x="440" y="50" width="120" height="48" rx="8" fill="#eef2f7" stroke="#2563eb"/><text x="500" y="79" text-anchor="middle" font-size="12">Phase7 动态</text>
+  <rect x="580" y="50" width="120" height="48" rx="8" fill="#fffbeb" stroke="#b45309"/><text x="640" y="79" text-anchor="middle" font-size="12">Phase8 选型</text>
+  <line x1="140" y1="74" x2="156" y2="74" stroke="#0f766e" stroke-width="2" marker-end="url(#a2)"/>
+  <line x1="280" y1="74" x2="296" y2="74" stroke="#0f766e" stroke-width="2" marker-end="url(#a2)"/>
+  <line x1="420" y1="74" x2="436" y2="74" stroke="#0f766e" stroke-width="2" marker-end="url(#a2)"/>
+  <line x1="560" y1="74" x2="576" y2="74" stroke="#0f766e" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="20" y="130" width="680" height="100" rx="8" fill="#fff" stroke="#e4e7eb"/>
+  <text x="32" y="152" font-size="11.5" font-weight="700" fill="#52606d">复用的 Phase 0–3 引擎（只读）</text>
+  <text x="32" y="172" font-size="11" fill="#1f2933">variant_definition → realize_variant → transfer_tree_gen → adc_metrics → quantile_linear</text>
+  <text x="32" y="190" font-size="11" fill="#1f2933">新增：design_search / cal2_eval / dynamics_eval / margin_profile / svgfig</text>
+  <text x="32" y="208" font-size="11" fill="#1f2933">对比表只读读取 Phase 0–3 归档 CSV（architecture_calibration_summary.csv），未重跑</text>
+</svg>
+</div>
+
+<!-- ============ bwar 精炼 ============ -->
+<h2>四、Phase A/B/C 精炼：把非整数桥收敛到整数桥</h2>
+<p>Phase 4–8 推荐的 BWAR-final 有一个<b>版图难题</b>：桥电容 <code>Cb = 1.949020 Cu = 292.35 fF</code> 是非整数个单位电容，
+实际电容器阵列只能做整数个单位电容的倍数。bwar 阶段回答的问题是：<b>能否用整数 Cu 的桥（即 Cb=1/2/3 Cu）替代，
+仍满足 16-bit 规格？</b> 它同样只读复用前两阶段的引擎。</p>
+
+<h3>4.1 显式桥构造器（<code>bwar_build.m</code>）</h3>
+<p>这是 bwar 自带的“BWAR 构建器”，与 p4_8 的 <code>variant_definition('BWAR',…)</code> 契约一致：</p>
+<pre>if p.Cb_Cu &gt; 0
+    a.bridge = p.Cb_Cu;                       <span class="c">% 显式整数桥</span>
+else
+    Leff = L/256; a.bridge = Leff*L/(L-Leff); <span class="c">% Cb&lt;0 → 复现 BWAR-final 的 1.949020 Cu</span>
+end</pre>
+<p><code>test_reference_bwar_final.m</code> 正是用 <code>bwar_build(cfg.ref)</code>（Cb&lt;0）复算 p4_8 的 BWAR-final，
+断言电容表 / 桥 / 判决顺序完全一致，并复现 100%/0.980/0.569——<b>用回归测试把三阶段锁死在同一物理模型上</b>。</p>
+
+<h3>4.2 整数桥搜索（<code>integer_bridge_search.m</code> / <code>fine_search.m</code>）</h3>
+<p>这是本阶段的计算主体，采用<b>分阶段（staged）Monte Carlo 漏斗</b>控制成本：</p>
+<table>
+<tr><th>阶段</th><th>候选来源</th><th>MC 规模</th><th>筛选</th></tr>
+<tr><td>名义预门</td><td>全部 4125 候选（Cb∈{1,2,3} × topR 0:2:20 × lowR1 64:8:256 × bot 0:4）</td><td>0（解析）</td><td>CAL1 零缺码+单调+规格</td></tr>
+<tr><td>Stage A</td><td>过名义门者</td><td>128 颗</td><td>记 pass/DNL99</td></tr>
+<tr><td>Stage B</td><td>Stage A Top-25</td><td>1000 颗</td><td>取 Top-8</td></tr>
+<tr><td>Stage C</td><td>Stage B Top-8</td><td>10,000 颗</td><td>选最佳</td></tr>
+<tr><td>Fine</td><td>围绕最佳粗搜区（topR±4, lowR1±32, bot 0:4）</td><td>512 + 10k 验证 8 个</td><td>10k 验证</td></tr>
+</table>
+<p>结论（写入 <code>final_report.md</code>）：<b>Cb=2 Cu（300 fF）可行</b>——粗搜 4125 候选中 197 个过名义门、46 个 ≥99% 良率；
+10k MC 最优达 100% 通过，DNL99 约 0.93–0.94（甚至略优于 reference 的 0.980）。Cb=1 最高仅 29.7%，Cb=3 名义门全灭。
+因此非整数桥可安全收敛为整数桥 <b>Cb=2Cu</b>，消除版图实现障碍。</p>
+
+<h3>4.3 实际校准行为模型（Phase B/C）</h3>
+<ul>
+<li><code>practical_cal2.m</code>：前台“平均式”位权校准——<code>What = Wreal + noise + Vos_cal</code>，noise~N(0,σ²) 多次平均后
+经验验证 <code>σ_cal ≈ σ_meas/√Navg</code>；并单独研究系统性 offset（不随平均消失）。</li>
+<li><code>coeff_encoding_eval.m</code>：对比两种系数编码——<b>FULL-WEIGHT</b>（全权重量化）vs <b>ERROR-ONLY</b>（只量化
+<code>dW=What−Wnom</code> 的差值，解码时还原）。ERROR-ONLY 用更小字长即可达 ≥99%（实测 dW|max|≈11 LSB，±256 LSB 范围内约 12 bit）。</li>
+<li><code>offset_residual_eval.m</code>：前台 offset 校准后的残余比较器 offset 对规格的影响（Phase C）。</li>
+</ul>
+
+<div class="svgbox">
+<svg viewBox="0 0 720 210" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+  <defs><marker id="a3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#2563eb"/></marker></defs>
+  <text x="360" y="20" text-anchor="middle" font-size="13" font-weight="700">bwar 阶段：整数桥收敛漏斗 + 校准行为模型</text>
+  <!-- funnel -->
+  <polygon points="60,55 320,55 230,130 150,130" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="190" y="78" text-anchor="middle" font-size="11">4125 候选</text>
+  <text x="190" y="98" text-anchor="middle" font-size="10">↓ 名义门</text>
+  <text x="190" y="118" text-anchor="middle" font-size="10">Stage A 128 → B 1k → C 10k</text>
+  <rect x="370" y="55" width="150" height="75" rx="8" fill="#eef2f7" stroke="#2563eb"/>
+  <text x="445" y="80" text-anchor="middle" font-size="11" font-weight="700">fine_search</text>
+  <text x="445" y="100" text-anchor="middle" font-size="10">围绕最佳区细搜</text>
+  <text x="445" y="118" text-anchor="middle" font-size="10">+ 10k 验证 Top-8</text>
+  <line x1="320" y1="92" x2="368" y2="92" stroke="#2563eb" stroke-width="2" marker-end="url(#a3)"/>
+  <rect x="560" y="55" width="140" height="75" rx="8" fill="#f0fdfa" stroke="#0f766e"/>
+  <text x="630" y="80" text-anchor="middle" font-size="11" font-weight="700">Phase B/C</text>
+  <text x="630" y="100" text-anchor="middle" font-size="10">CAL2 行为模型</text>
+  <text x="630" y="118" text-anchor="middle" font-size="10">编码 / offset</text>
+  <line x1="520" y1="92" x2="558" y2="92" stroke="#2563eb" stroke-width="2" marker-end="url(#a3)"/>
+  <rect x="20" y="150" width="680" height="48" rx="8" fill="#fff" stroke="#e4e7eb"/>
+  <text x="32" y="172" font-size="11.5" fill="#1f2933">门条件：Cb 整数 + CAL1 pass≥99.9% + 零缺码≥99.9% + DNL99≤0.8（10k）。结论：整数桥 Cb=2Cu 过门，DNL99≤0.8 需 topR≈50（电容超预算，如实列为 Pareto）</text>
+</svg>
+</div>
+
+<!-- ============ 代码关系总图 ============ -->
+<h2>五、代码关系总图（函数级依赖）</h2>
+<p>下面把三阶段的函数调用关系抽成一张图，标出哪些文件是“地基（只读复用）”、哪些是“扩展”、哪些是“精炼”。</p>
+
+<div class="svgbox">
+<svg viewBox="0 0 720 430" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+  <defs>
+    <marker id="d" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/></marker>
+    <style>text{font-size:11px} .t{font-weight:700}</style>
+  </defs>
+  <text x="360" y="16" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2933">函数级调用关系（箭头 = “调用/复用”）</text>
+
+  <!-- Layer 0: core engine -->
+  <rect x="20" y="40" width="680" height="120" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="32" y="60" font-size="11.5" font-weight="700" fill="#52606d">Phase 0–3 核心引擎（地基，三阶段只读复用）</text>
+  <rect x="40" y="72" width="150" height="34" rx="6" fill="#eef2f7" stroke="#2563eb"/><text x="115" y="93" text-anchor="middle">network_weights</text>
+  <rect x="210" y="72" width="160" height="34" rx="6" fill="#eef2f7" stroke="#2563eb"/><text x="290" y="93" text-anchor="middle">architecture_definition</text>
+  <rect x="390" y="72" width="150" height="34" rx="6" fill="#eef2f7" stroke="#2563eb"/><text x="465" y="93" text-anchor="middle">adc_metrics</text>
+  <rect x="560" y="72" width="120" height="34" rx="6" fill="#eef2f7" stroke="#2563eb"/><text x="620" y="93" text-anchor="middle">quantile_linear</text>
+  <rect x="40" y="116" width="150" height="34" rx="6" fill="#eef2f7" stroke="#2563eb"/><text x="115" y="137" text-anchor="middle">realize_architecture</text>
+  <rect x="210" y="116" width="160" height="34" rx="6" fill="#eef2f7" stroke="#2563eb"/><text x="290" y="137" text-anchor="middle">transfer_tree</text>
+  <rect x="390" y="116" width="150" height="34" rx="6" fill="#eef2f7" stroke="#2563eb"/><text x="465" y="137" text-anchor="middle">sar_convert（校验）</text>
+  <rect x="560" y="116" width="120" height="34" rx="6" fill="#eef2f7" stroke="#2563eb"/><text x="620" y="137" text-anchor="middle">run_mc</text>
+
+  <!-- Layer 1: p4_8 -->
+  <rect x="20" y="180" width="680" height="120" rx="10" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"/>
+  <text x="32" y="200" font-size="11.5" font-weight="700" fill="#0f766e">Phase 4–8 扩展层（addpath 复用上面 8 个函数）</text>
+  <rect x="40" y="212" width="160" height="34" rx="6" fill="#ccfbf1" stroke="#0f766e"/><text x="120" y="233" text-anchor="middle">variant_definition</text>
+  <rect x="220" y="212" width="150" height="34" rx="6" fill="#ccfbf1" stroke="#0f766e"/><text x="295" y="233" text-anchor="middle">realize_variant</text>
+  <rect x="390" y="212" width="160" height="34" rx="6" fill="#ccfbf1" stroke="#0f766e"/><text x="470" y="233" text-anchor="middle">transfer_tree_gen</text>
+  <rect x="570" y="212" width="110" height="34" rx="6" fill="#ccfbf1" stroke="#0f766e"/><text x="625" y="233" text-anchor="middle">run_variant_mc</text>
+  <rect x="40" y="256" width="160" height="34" rx="6" fill="#ccfbf1" stroke="#0f766e"/><text x="120" y="277" text-anchor="middle">design_search</text>
+  <rect x="220" y="256" width="150" height="34" rx="6" fill="#ccfbf1" stroke="#0f766e"/><text x="295" y="277" text-anchor="middle">cal2_eval</text>
+  <rect x="390" y="256" width="160" height="34" rx="6" fill="#ccfbf1" stroke="#0f766e"/><text x="470" y="277" text-anchor="middle">dynamics_eval</text>
+  <rect x="570" y="256" width="110" height="34" rx="6" fill="#ccfbf1" stroke="#0f766e"/><text x="625" y="277" text-anchor="middle">margin_profile</text>
+
+  <!-- Layer 2: bwar -->
+  <rect x="20" y="320" width="680" height="95" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="32" y="340" font-size="11.5" font-weight="700" fill="#2563eb">Phase A/B/C 精炼层（addpath 复用两层函数）</text>
+  <rect x="40" y="352" width="160" height="34" rx="6" fill="#dbeafe" stroke="#2563eb"/><text x="120" y="373" text-anchor="middle">bwar_build</text>
+  <rect x="220" y="352" width="160" height="34" rx="6" fill="#dbeafe" stroke="#2563eb"/><text x="300" y="373" text-anchor="middle">integer_bridge_search</text>
+  <rect x="400" y="352" width="120" height="34" rx="6" fill="#dbeafe" stroke="#2563eb"/><text x="460" y="373" text-anchor="middle">fine_search</text>
+  <rect x="540" y="352" width="140" height="34" rx="6" fill="#dbeafe" stroke="#2563eb"/><text x="610" y="373" text-anchor="middle">run_mc_impl</text>
+  <rect x="40" y="388" width="160" height="22" rx="6" fill="#dbeafe" stroke="#2563eb"/><text x="120" y="403" text-anchor="middle">practical_cal2</text>
+  <rect x="220" y="388" width="160" height="22" rx="6" fill="#dbeafe" stroke="#2563eb"/><text x="300" y="403" text-anchor="middle">coeff_encoding_eval</text>
+  <rect x="400" y="388" width="120" height="22" rx="6" fill="#dbeafe" stroke="#2563eb"/><text x="460" y="403" text-anchor="middle">offset_residual</text>
+  <rect x="540" y="388" width="140" height="22" rx="6" fill="#dbeafe" stroke="#2563eb"/><text x="610" y="403" text-anchor="middle">4×test_*（回归）</text>
+
+  <!-- dependency arrows -->
+  <line x1="115" y1="150" x2="120" y2="210" stroke="#64748b" stroke-width="1.5" marker-end="url(#d)"/>
+  <line x1="295" y1="150" x2="295" y2="210" stroke="#64748b" stroke-width="1.5" marker-end="url(#d)"/>
+  <line x1="465" y1="150" x2="470" y2="210" stroke="#64748b" stroke-width="1.5" marker-end="url(#d)"/>
+  <line x1="625" y1="150" x2="625" y2="210" stroke="#64748b" stroke-width="1.5" marker-end="url(#d)"/>
+  <line x1="120" y1="290" x2="120" y2="350" stroke="#64748b" stroke-width="1.5" marker-end="url(#d)"/>
+  <line x1="300" y1="290" x2="300" y2="350" stroke="#64748b" stroke-width="1.5" marker-end="url(#d)"/>
+  <line x1="625" y1="290" x2="610" y2="350" stroke="#64748b" stroke-width="1.5" marker-end="url(#d)"/>
+</svg>
+</div>
+
+<div class="note">
+<b>“复用”的具体含义</b>：p4_8 的 <code>realize_variant</code> 直接调用 Phase 0–3 的 <code>network_weights</code>；
+<code>transfer_tree_gen</code> 是 <code>transfer_tree</code> 的<b>独立重写</b>（增加约定/裕度/解码权重），不再调用原函数；
+bwar 的 <code>run_mc_impl</code> 调用 <code>realize_variant + transfer_tree_gen + adc_metrics</code>。
+所有随机数流用 <code>archIndex</code>（Phase 0–3: 1–4；CurrentR=5；BWAR=6）错开，<b>保证不同架构/变体/阶段之间种子不碰撞</b>，
+使每次 <code>main_*(‘all’)</code> 复现出的数字与归档一致。
+</div>
+
+<!-- ============ 核心算法 ============ -->
+<h2>六、关键算法如何实现（物理层面）</h2>
+
+<h3>6.1 失配 → 权重（节点方程 + √面积律）</h3>
+<p>每颗芯片：物理电容按 <code>σ_u·√cap</code> 抖动 → 对每侧调用 <code>network_weights</code> 解节点方程得有效权重 →
+两侧取平均。σ_u 由工艺常数 K_fF 与单位电容 Cu 决定，<code>cfg.sigma = √(K/Cu) ≈ 1.6326%</code>。这是所有统计的“物理墙”。</p>
+
+<h3>6.2 模拟 SAR → 数字区间（精确判决树）</h3>
+<p>不用“给电压、跑比较器”的黑箱，而是<b>区间精确传播</b>：根区间 = 输入域，每级按约定把存活区间一分为二，
+记录决策比特、最终状态 <code>state</code>、名义累加 <code>dc</code>。叶子区间宽度之和守恒（断言 <code>sum(hi−lo)=diff(domain)</code>），
+塌缩到 0 的区间即“缺码”。<code>state</code> 直接给 CAL1（真实权重解码）的码，<code>dc</code> 给 CAL0（名义权重解码）的码。</p>
+
+<h3>6.3 三级校准（CAL0 / CAL1 / CAL2）</h3>
+<table>
+<tr><th>级别</th><th>解码权重</th><th>物理含义</th><th>在本项目中的角色</th></tr>
+<tr><td><span class="tag">CAL0</span></td><td>名义（设计）权重</td><td>不做任何校准</td><td>基准，四架构原始 DNL/INL（大量非单调/缺码）</td></tr>
+<tr><td><span class="tag green">CAL1</span></td><td>真实权重（oracle）</td><td>假设能完美测出每个电容的真实值</td><td>架构“可达性”上界；BWAR-final 在此 100% 达标</td></tr>
+<tr><td><span class="tag amber">CAL2</span></td><td>有限字长估计权重</td><td>实际前台校准：带测量噪声 + 字长量化 + 编码</td><td>Phase 4 扫描字长/误差；bwar Phase B/C 行为建模</td></tr>
+</table>
+
+<div class="svgbox">
+<svg viewBox="0 0 720 160" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+  <text x="360" y="18" text-anchor="middle" font-size="12.5" font-weight="700">校准三阶段：从“理想设计”到“可实现的有限字长前台校准”</text>
+  <rect x="40" y="50" width="180" height="70" rx="8" fill="#eef2f7" stroke="#2563eb"/><text x="130" y="80" text-anchor="middle" font-size="12" font-weight="700">CAL0</text><text x="130" y="100" text-anchor="middle" font-size="10">名义权重 · 无校准</text>
+  <rect x="270" y="50" width="180" height="70" rx="8" fill="#dcfce7" stroke="#15803d"/><text x="360" y="80" text-anchor="middle" font-size="12" font-weight="700">CAL1</text><text x="360" y="100" text-anchor="middle" font-size="10">oracle 真实权重</text>
+  <rect x="500" y="50" width="180" height="70" rx="8" fill="#fef3c7" stroke="#b45309"/><text x="590" y="80" text-anchor="middle" font-size="12" font-weight="700">CAL2</text><text x="590" y="100" text-anchor="middle" font-size="10">带噪声+量化+编码</text>
+  <line x1="220" y1="85" x2="266" y2="85" stroke="#64748b" stroke-width="2" marker-end="url(#d)"/>
+  <line x1="450" y1="85" x2="496" y2="85" stroke="#64748b" stroke-width="2" marker-end="url(#d)"/>
+  <text x="130" y="140" text-anchor="middle" font-size="10" fill="#52606d">基准（差）</text>
+  <text x="360" y="140" text-anchor="middle" font-size="10" fill="#52606d">架构可达性上界</text>
+  <text x="590" y="140" text-anchor="middle" font-size="10" fill="#52606d">现实可实现目标</text>
+</svg>
+</div>
+
+<h3>6.4 裕度与“结构性无解”的判定</h3>
+<p>Phase 5 用 <code>transfer_tree_gen</code> 记录的逐层 <code>margin M_k</code>（最差存活节点到区间边界的距离 − 即将迈出的步长）量化脆弱性：</p>
+<ul>
+<li>Current 的 fullstep：<code>M(k+1)=min(w_k, H_k−w_k)</code>，主位二进制减半链上<b>任何 r 冗余位插入都破坏链条</b> → CurrentR-A（调顺序）与 -B（调 r 值）被结构性否定；去 r 帽的 CurrentR-Z 名义完美但失配下 M2/M3 层裕度被 TOP 段路径噪声（σ≈94 LSB16）压倒 → CAL1 良率 0%。</li>
+<li>单调族（BWA/BWAR）的端节点“哑金”噪声是全局量（σ_E≈67 LSB16），每层裕度都含它 → 必须用<b>多点冗余</b>（topR + lowR1 + botCap）且 LOW 加电容时<b>同步重调桥</b>才能压住。</li>
+</ul>
+<p>这两条是整篇研究“为什么最终选 BWAR-final、为什么 Current 在授权内无解”的定量根据。</p>
+
+<!-- ============ 结论 ============ -->
+<h2>七、最终结论与代码演进价值</h2>
+<div class="card">
+<b>一句话</b>：在 σ_u≈1.63% 的单位电容失配下，四种原始 16-bit CDAC 架构都无法靠 CAL1 达到 16-bit 规格；
+通过给 BWA 桥结构叠加多点冗余（topR=10Cu / lowR1=240Cu 桥重调 / botCap=1Cu，19 判决，229.18 pF）得到的
+<b>BWAR-final</b> 是唯一达标者（100%/1000，DNL99=0.980，INL99=0.569）。
+bwar 阶段进一步证明该方案可收敛到<b>整数桥 Cb=2Cu（300 fF）</b>，消除版图实现障碍，并保持 ≥99% 良率、DNL99≈0.93。
+</div>
+
+<table>
+<tr><th>维度</th><th>Phase 0–3</th><th>Phase 4–8</th><th>Phase A/B/C</th></tr>
+<tr><td>角色</td><td>物理引擎 + 基准</td><td>架构选型（BWAR-final）</td><td>可实现性收敛（整数桥）</td></tr>
+<tr><td>新增核心文件</td><td>8 个引擎函数 + 测试</td><td>variant_definition / realize_variant / transfer_tree_gen / design_search / cal2_eval / dynamics_eval</td><td>bwar_build / integer_bridge_search / fine_search / practical_cal2 / coeff_encoding_eval / 4 测试</td></tr>
+<tr><td>对前序的改动</td><td>—</td><td>零改动，addpath 只读</td><td>零改动，addpath 只读两层</td></tr>
+<tr><td>复现入口</td><td><code>main_run()</code></td><td><code>main_phase48('all')</code></td><td><code>main_impl_refinement('all')</code></td></tr>
+<tr><td>关键约束</td><td>σ_u=1.63%，N=16</td><td>CAL2 ≥24bit；offset 须单独校</td><td>整数桥门：pass≥99.9% & DNL99≤0.8</td></tr>
+</table>
+
+<div class="note teal">
+<b>这套代码的工程价值</b>：它不是“跑一次出个数”，而是一套<b>可追溯、可复现、可审计</b>的研究基础设施——
+用回归测试（<code>test_reference_bwar_final</code> 等）把三阶段锁在同一物理模型；用 <code>addpath</code> 只读复用避免漂移；
+用可复现随机流 + 归档 CSV 让每个数字都能溯源。后续若进入电路级（Virtuoso/Spectre）或调整 σ_u/电容预算，
+只需改 <code>config_*.m</code> 重跑对应 <code>main_*</code> 即可。
+</div>
+
+<p class="muted">解读基于三个目录的源码与文档（README / context_audit / HANDOFF / LIMITATIONS / SOURCE_CORRECTIONS / 各 main_* 与核心 .m 文件）整理。所有数值均来自代码注释与归档报告中的明文结论。</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+=== PHASE48 STAGE P5 START 2026-10-15 18:57:50 ===
+Diagnosis Current: worst level k=3 margin=-14514.74 LSB
+Diagnosis BWA:     worst level k=10 margin=-34.01 LSB
+CurrentR-A (order only): frozen missing=25759; descending missing=25759
+[design_search:CurrentR] 72 candidates
+  25/72 done (0 passed gate)
+  50/72 done (2 passed gate)
+[design_search:CurrentR] chosen {"r12a":0,"r8a":8,"r4":12,"domMatch":true,"retune":false} (worstMargin=-110.22 LSB, cap=64.347 pF, decisions=18)
+[design_search:BWAR] 9 candidates
+[design_search:BWAR] chosen {"rA":0,"topR":0} (worstMargin=-19.43 LSB, cap=153.601 pF, decisions=16)
+verify CurrentR {"r12a":8,"r8a":8,"r4":8,"domMatch":false,"retune":false}                      CAL1 pass 0.00% zero-miss 0.00% (dec=19, cap=65.55 pF)
+verify CurrentR {"r12a":0,"r8a":0,"r4":0,"domMatch":false,"retune":false}                      CAL1 pass 0.00% zero-miss 0.00% (dec=16, cap=58.35 pF)
+verify CurrentR {"r12a":0,"r8a":0,"r4":0,"domMatch":true,"retune":true}                        CAL1 pass 0.00% zero-miss 0.00% (dec=16, cap=58.10 pF)
+verify CurrentR {"r12a":0,"r8a":0,"r4":1,"domMatch":true,"retune":true}                        CAL1 pass 0.00% zero-miss 0.00% (dec=17, cap=58.42 pF)
+verify BWAR {"rA":0,"topR":0,"lowR1":0,"botCap":0}                                         CAL1 pass 0.00% zero-miss 0.00% (dec=16, cap=153.60 pF)
+verify BWAR {"rA":0,"topR":1,"lowR1":0,"botCap":0}                                         CAL1 pass 0.00% zero-miss 0.00% (dec=17, cap=153.90 pF)
+verify BWAR {"rA":0,"topR":8,"lowR1":240,"botCap":1}                                       CAL1 pass 99.40% zero-miss 99.40% (dec=19, cap=228.58 pF)
+verify BWAR {"rA":0,"topR":10,"lowR1":240,"botCap":1}                                      CAL1 pass 100.00% zero-miss 100.00% (dec=19, cap=229.18 pF)
+verify BWAR {"rA":0,"topR":12,"lowR1":240,"botCap":1}                                      CAL1 pass 100.00% zero-miss 100.00% (dec=19, cap=229.78 pF)
+MC CurrentR n=100 (0.4s): CAL0 pass=0.00% CAL1 pass=0.00% CAL1 zero-missing=0.00% CAL1 mono=0.00%
+MC CurrentR n=1000 (3.5s): CAL0 pass=0.00% CAL1 pass=0.00% CAL1 zero-missing=0.00% CAL1 mono=0.00%
+MC BWAR n=100 (1.3s): CAL0 pass=0.00% CAL1 pass=100.00% CAL1 zero-missing=100.00% CAL1 mono=100.00%
+MC BWAR n=1000 (11.6s): CAL0 pass=0.00% CAL1 pass=100.00% CAL1 zero-missing=100.00% CAL1 mono=100.00%
+MC BWAR n=100 (0.6s): CAL0 pass=0.00% CAL1 pass=0.00% CAL1 zero-missing=0.00% CAL1 mono=100.00%
+MC BWAR n=1000 (5.4s): CAL0 pass=0.00% CAL1 pass=0.00% CAL1 zero-missing=0.00% CAL1 mono=100.00%
+sigma x0.25 BWA        : CAL1 pass=0.0% zero-missing=0.0%
+sigma x0.25 CurrentR   : CAL1 pass=0.0% zero-missing=0.0%
+sigma x0.25 CurrentR-Z : CAL1 pass=0.0% zero-missing=0.0%
+sigma x0.25 BWAR-final : CAL1 pass=100.0% zero-missing=100.0%
+sigma x0.50 BWA        : CAL1 pass=0.0% zero-missing=0.0%
+sigma x0.50 CurrentR   : CAL1 pass=0.0% zero-missing=0.0%
+sigma x0.50 CurrentR-Z : CAL1 pass=0.0% zero-missing=0.0%
+sigma x0.50 BWAR-final : CAL1 pass=100.0% zero-missing=100.0%
+sigma x1.00 BWA        : CAL1 pass=0.0% zero-missing=0.0%
+sigma x1.00 CurrentR   : CAL1 pass=0.0% zero-missing=0.0%
+sigma x1.00 CurrentR-Z : CAL1 pass=0.0% zero-missing=0.0%
+sigma x1.00 BWAR-final : CAL1 pass=100.0% zero-missing=100.0%
+Phase 5 report written.
+Phase 5 complete.
+=== PHASE48 STAGE P5 DONE 2026-10-15 19:00:03 ===

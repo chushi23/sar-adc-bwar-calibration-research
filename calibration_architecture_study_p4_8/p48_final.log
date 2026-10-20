@@ -1,0 +1,33 @@
+Phase 4 outputs written.
+=== PHASE48 STAGE P6 START 2026-10-15 19:42:07 ===
+FINAL MC BWAR n=10000 (106.1s): CAL1 pass=99.90% zero-miss=99.90% mono=100.00%
+FINAL MC CurrentR n=10000 (39.2s): CAL1 pass=0.00% zero-miss=0.00% mono=16.94%
+Phase 6 complete.
+=== PHASE48 STAGE P6 DONE 2026-10-15 19:44:35 ===
+=== PHASE48 STAGE P7 START 2026-10-15 19:44:35 ===
+DYN BWAR      offset_LSB=0    : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+DYN BWAR      offset_LSB=0.25 : pass=0.0% DNL95=1.204 INL95=3.690 missingP50=1960
+DYN BWAR      offset_LSB=0.5  : pass=0.0% DNL95=1.454 INL95=7.882 missingP50=8817
+DYN BWAR      offset_LSB=1    : pass=0.0% DNL95=1.954 INL95=15.390 missingP50=22401
+DYN BWAR      offset_LSB=2    : pass=0.0% DNL95=2.954 INL95=30.295 missingP50=32096
+DYN BWAR      settle_LSB=0.01 : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+DYN BWAR      settle_LSB=0.1  : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+DYN BWAR      settle_LSB=0.5  : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+DYN BWAR      settle_LSB=1    : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+DYN BWAR      settle_LSB=2    : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+{请求的 131072x131072 (16.0GB)数组超过预设项的最大数组大小(15.1GB)，可能导致 MATLAB 无响应。
+
+出错 dynamics_eval>noisy_transfer (第 88 行)
+            d = vin + sig * randn(st, numel(vin), 1) >= thr;
+                                                     ^
+出错 dynamics_eval (第 40 行)
+        [dnl, inl, miss, mono] = noisy_transfer(a, real, cfg, vn * a.lsb, j);
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+出错 main_phase48>run_phase7 (第 330 行)
+D = dynamics_eval('BWAR', struct('rA',0,'topR',10,'lowR1',240,'botCap',1), cfg);
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+出错 main_phase48 (第 14 行)
+case 'p7',  run_phase7(cfg);
+            ^^^^^^^^^^^^^^^
+} 
+ERROR: MATLAB error Exit Status: 0x00000001

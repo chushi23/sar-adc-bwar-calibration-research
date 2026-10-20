@@ -1,0 +1,222 @@
+=== IMPL REFINEMENT PHASEBC START 2026-10-15 23:27:52 ===
+BWAR-Impl candidate: {"Cb_Cu":2,"topR":24,"lowR1":248,"botCap":1} (cap 235.8 pF)
+CAL2 meas sig=0.02 Navg=  1 Vos=0: pass=34.0% DNL99=1.000 sigma_cal~0.0000
+CAL2 meas sig=0.02 Navg=  4 Vos=0: pass=55.4% DNL99=0.968 sigma_cal~0.0000
+CAL2 meas sig=0.02 Navg= 16 Vos=0: pass=73.8% DNL99=0.948 sigma_cal~0.0000
+CAL2 meas sig=0.02 Navg= 32 Vos=0: pass=75.8% DNL99=0.944 sigma_cal~0.0000
+CAL2 meas sig=0.02 Navg= 64 Vos=0: pass=86.8% DNL99=0.934 sigma_cal~0.0000
+CAL2 meas sig=0.02 Navg=128 Vos=0: pass=89.4% DNL99=0.938 sigma_cal~0.0000
+CAL2 meas sig=0.02 Navg=256 Vos=0: pass=92.2% DNL99=0.935 sigma_cal~0.0000
+CAL2 meas sig=0.02 Navg=512 Vos=0: pass=95.4% DNL99=0.941 sigma_cal~0.0000
+CAL2 meas sig=0.05 Navg=  1 Vos=0: pass=8.6% DNL99=1.144 sigma_cal~0.0000
+CAL2 meas sig=0.05 Navg=  4 Vos=0: pass=29.2% DNL99=1.003 sigma_cal~0.0000
+CAL2 meas sig=0.05 Navg= 16 Vos=0: pass=46.2% DNL99=0.973 sigma_cal~0.0000
+CAL2 meas sig=0.05 Navg= 32 Vos=0: pass=59.2% DNL99=0.964 sigma_cal~0.0000
+CAL2 meas sig=0.05 Navg= 64 Vos=0: pass=66.2% DNL99=0.966 sigma_cal~0.0000
+CAL2 meas sig=0.05 Navg=128 Vos=0: pass=72.4% DNL99=0.944 sigma_cal~0.0000
+CAL2 meas sig=0.05 Navg=256 Vos=0: pass=80.4% DNL99=0.941 sigma_cal~0.0000
+CAL2 meas sig=0.05 Navg=512 Vos=0: pass=86.4% DNL99=0.936 sigma_cal~0.0000
+CAL2 meas sig=0.1 Navg=  1 Vos=0: pass=0.8% DNL99=1.346 sigma_cal~0.0000
+CAL2 meas sig=0.1 Navg=  4 Vos=0: pass=9.2% DNL99=1.135 sigma_cal~0.0000
+CAL2 meas sig=0.1 Navg= 16 Vos=0: pass=30.4% DNL99=1.010 sigma_cal~0.0000
+CAL2 meas sig=0.1 Navg= 32 Vos=0: pass=37.8% DNL99=1.000 sigma_cal~0.0000
+CAL2 meas sig=0.1 Navg= 64 Vos=0: pass=49.2% DNL99=0.987 sigma_cal~0.0000
+CAL2 meas sig=0.1 Navg=128 Vos=0: pass=58.8% DNL99=0.968 sigma_cal~0.0000
+CAL2 meas sig=0.1 Navg=256 Vos=0: pass=69.4% DNL99=0.952 sigma_cal~0.0000
+CAL2 meas sig=0.1 Navg=512 Vos=0: pass=75.8% DNL99=0.947 sigma_cal~0.0000
+CAL2 meas sig=0.25 Navg=  1 Vos=0: pass=0.0% DNL99=1.735 sigma_cal~0.0000
+CAL2 meas sig=0.25 Navg=  4 Vos=0: pass=0.4% DNL99=1.348 sigma_cal~0.0000
+CAL2 meas sig=0.25 Navg= 16 Vos=0: pass=5.0% DNL99=1.187 sigma_cal~0.0000
+CAL2 meas sig=0.25 Navg= 32 Vos=0: pass=10.8% DNL99=1.074 sigma_cal~0.0000
+CAL2 meas sig=0.25 Navg= 64 Vos=0: pass=21.8% DNL99=1.075 sigma_cal~0.0000
+CAL2 meas sig=0.25 Navg=128 Vos=0: pass=32.0% DNL99=1.000 sigma_cal~0.0000
+CAL2 meas sig=0.25 Navg=256 Vos=0: pass=42.0% DNL99=1.000 sigma_cal~0.0000
+CAL2 meas sig=0.25 Navg=512 Vos=0: pass=49.8% DNL99=0.973 sigma_cal~0.0000
+CAL2 meas sig=0.5 Navg=  1 Vos=0: pass=0.0% DNL99=2.565 sigma_cal~0.0000
+CAL2 meas sig=0.5 Navg=  4 Vos=0: pass=0.0% DNL99=2.024 sigma_cal~0.0000
+CAL2 meas sig=0.5 Navg= 16 Vos=0: pass=0.4% DNL99=1.270 sigma_cal~0.0000
+CAL2 meas sig=0.5 Navg= 32 Vos=0: pass=1.8% DNL99=1.313 sigma_cal~0.0000
+CAL2 meas sig=0.5 Navg= 64 Vos=0: pass=4.6% DNL99=1.125 sigma_cal~0.0000
+CAL2 meas sig=0.5 Navg=128 Vos=0: pass=10.4% DNL99=1.031 sigma_cal~0.0000
+CAL2 meas sig=0.5 Navg=256 Vos=0: pass=22.0% DNL99=1.013 sigma_cal~0.0000
+CAL2 meas sig=0.5 Navg=512 Vos=0: pass=33.0% DNL99=1.016 sigma_cal~0.0000
+CAL2 meas sig=0.05 Navg= 64 Vos=0.01: pass=15.0% DNL99=1.001 sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.02: pass=1.0% DNL99=1.021 sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.05: pass=0.0% DNL99=Inf sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.1: pass=0.0% DNL99=Inf sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.25: pass=0.0% DNL99=Inf sigma_cal~NaN
+ENC FULL b= 8: pass=0.0% DNL99=327.788 sat=0 qerr=16.2674 LSB
+ENC FULL b=10: pass=0.0% DNL99=108.055 sat=0 qerr=6.7428 LSB
+ENC FULL b=12: pass=0.0% DNL99=30.467 sat=0 qerr=2.5591 LSB
+ENC FULL b=14: pass=0.0% DNL99=6.158 sat=0 qerr=0.7405 LSB
+ENC FULL b=16: pass=0.4% DNL99=1.750 sat=0 qerr=0.1614 LSB
+ENC FULL b=18: pass=31.0% DNL99=1.159 sat=0 qerr=0.0468 LSB
+ENC FULL b=20: pass=84.2% DNL99=1.000 sat=0 qerr=0.0133 LSB
+=== IMPL REFINEMENT PHASEBC START 2026-10-15 23:37:22 ===
+BWAR-Impl candidate: {"Cb_Cu":2,"topR":64,"lowR1":256,"botCap":1} (cap 250.2 pF)
+CAL2 meas sig=0.02 Navg=  1 Vos=0: pass=34.8% DNL99=0.890 sigma_cal~0.0200
+CAL2 meas sig=0.02 Navg=  4 Vos=0: pass=52.4% DNL99=0.828 sigma_cal~0.0099
+CAL2 meas sig=0.02 Navg= 16 Vos=0: pass=71.2% DNL99=0.812 sigma_cal~0.0050
+CAL2 meas sig=0.02 Navg= 32 Vos=0: pass=74.8% DNL99=0.803 sigma_cal~0.0035
+CAL2 meas sig=0.02 Navg= 64 Vos=0: pass=84.6% DNL99=0.796 sigma_cal~0.0025
+CAL2 meas sig=0.02 Navg=128 Vos=0: pass=86.2% DNL99=0.800 sigma_cal~0.0017
+CAL2 meas sig=0.02 Navg=256 Vos=0: pass=89.0% DNL99=0.798 sigma_cal~0.0012
+CAL2 meas sig=0.02 Navg=512 Vos=0: pass=94.8% DNL99=0.796 sigma_cal~0.0009
+CAL2 meas sig=0.05 Navg=  1 Vos=0: pass=17.4% DNL99=1.000 sigma_cal~0.0491
+CAL2 meas sig=0.05 Navg=  4 Vos=0: pass=30.8% DNL99=0.961 sigma_cal~0.0246
+CAL2 meas sig=0.05 Navg= 16 Vos=0: pass=43.2% DNL99=0.861 sigma_cal~0.0125
+CAL2 meas sig=0.05 Navg= 32 Vos=0: pass=55.4% DNL99=0.823 sigma_cal~0.0087
+CAL2 meas sig=0.05 Navg= 64 Vos=0: pass=63.4% DNL99=0.808 sigma_cal~0.0062
+CAL2 meas sig=0.05 Navg=128 Vos=0: pass=68.6% DNL99=0.805 sigma_cal~0.0044
+CAL2 meas sig=0.05 Navg=256 Vos=0: pass=77.8% DNL99=0.799 sigma_cal~0.0031
+CAL2 meas sig=0.05 Navg=512 Vos=0: pass=84.0% DNL99=0.799 sigma_cal~0.0022
+CAL2 meas sig=0.1 Navg=  1 Vos=0: pass=2.2% DNL99=1.160 sigma_cal~0.0980
+CAL2 meas sig=0.1 Navg=  4 Vos=0: pass=17.8% DNL99=1.012 sigma_cal~0.0497
+CAL2 meas sig=0.1 Navg= 16 Vos=0: pass=34.4% DNL99=0.945 sigma_cal~0.0247
+CAL2 meas sig=0.1 Navg= 32 Vos=0: pass=35.2% DNL99=0.891 sigma_cal~0.0174
+CAL2 meas sig=0.1 Navg= 64 Vos=0: pass=44.6% DNL99=0.856 sigma_cal~0.0124
+CAL2 meas sig=0.1 Navg=128 Vos=0: pass=56.8% DNL99=0.824 sigma_cal~0.0088
+CAL2 meas sig=0.1 Navg=256 Vos=0: pass=65.2% DNL99=0.800 sigma_cal~0.0061
+CAL2 meas sig=0.1 Navg=512 Vos=0: pass=72.0% DNL99=0.808 sigma_cal~0.0043
+CAL2 meas sig=0.25 Navg=  1 Vos=0: pass=0.0% DNL99=1.989 sigma_cal~0.2430
+CAL2 meas sig=0.25 Navg=  4 Vos=0: pass=2.0% DNL99=1.315 sigma_cal~0.1228
+CAL2 meas sig=0.25 Navg= 16 Vos=0: pass=14.2% DNL99=1.034 sigma_cal~0.0621
+CAL2 meas sig=0.25 Navg= 32 Vos=0: pass=18.8% DNL99=1.001 sigma_cal~0.0439
+CAL2 meas sig=0.25 Navg= 64 Vos=0: pass=26.0% DNL99=0.976 sigma_cal~0.0309
+CAL2 meas sig=0.25 Navg=128 Vos=0: pass=31.4% DNL99=0.883 sigma_cal~0.0218
+CAL2 meas sig=0.25 Navg=256 Vos=0: pass=43.0% DNL99=0.842 sigma_cal~0.0154
+CAL2 meas sig=0.25 Navg=512 Vos=0: pass=46.4% DNL99=0.836 sigma_cal~0.0110
+CAL2 meas sig=0.5 Navg=  1 Vos=0: pass=0.0% DNL99=1.857 sigma_cal~0.5025
+CAL2 meas sig=0.5 Navg=  4 Vos=0: pass=0.0% DNL99=1.759 sigma_cal~0.2464
+CAL2 meas sig=0.5 Navg= 16 Vos=0: pass=1.6% DNL99=1.327 sigma_cal~0.1228
+CAL2 meas sig=0.5 Navg= 32 Vos=0: pass=5.4% DNL99=1.215 sigma_cal~0.0868
+CAL2 meas sig=0.5 Navg= 64 Vos=0: pass=13.0% DNL99=1.079 sigma_cal~0.0611
+CAL2 meas sig=0.5 Navg=128 Vos=0: pass=18.4% DNL99=1.000 sigma_cal~0.0439
+CAL2 meas sig=0.5 Navg=256 Vos=0: pass=26.6% DNL99=0.951 sigma_cal~0.0304
+CAL2 meas sig=0.5 Navg=512 Vos=0: pass=32.8% DNL99=0.898 sigma_cal~0.0218
+=== IMPL REFINEMENT PHASEBC START 2026-10-15 23:46:08 ===
+BWAR-Impl candidate: {"Cb_Cu":2,"topR":64,"lowR1":256,"botCap":1} (cap 250.2 pF)
+=== IMPL REFINEMENT PHASEBC START 2026-10-15 23:46:19 ===
+BWAR-Impl candidate: {"Cb_Cu":2,"topR":64,"lowR1":256,"botCap":1} (cap 250.2 pF)
+CAL2 meas sig=0.02 Navg=  1 Vos=0: pass=34.8% DNL99=0.890 sigma_cal~0.0200
+CAL2 meas sig=0.02 Navg=  4 Vos=0: pass=52.4% DNL99=0.828 sigma_cal~0.0099
+CAL2 meas sig=0.02 Navg= 16 Vos=0: pass=71.2% DNL99=0.812 sigma_cal~0.0050
+CAL2 meas sig=0.02 Navg= 32 Vos=0: pass=74.8% DNL99=0.803 sigma_cal~0.0035
+CAL2 meas sig=0.02 Navg= 64 Vos=0: pass=84.6% DNL99=0.796 sigma_cal~0.0025
+CAL2 meas sig=0.02 Navg=128 Vos=0: pass=86.2% DNL99=0.800 sigma_cal~0.0017
+CAL2 meas sig=0.02 Navg=256 Vos=0: pass=89.0% DNL99=0.798 sigma_cal~0.0012
+CAL2 meas sig=0.02 Navg=512 Vos=0: pass=94.8% DNL99=0.796 sigma_cal~0.0009
+CAL2 meas sig=0.05 Navg=  1 Vos=0: pass=17.4% DNL99=1.000 sigma_cal~0.0491
+CAL2 meas sig=0.05 Navg=  4 Vos=0: pass=30.8% DNL99=0.961 sigma_cal~0.0246
+CAL2 meas sig=0.05 Navg= 16 Vos=0: pass=43.2% DNL99=0.861 sigma_cal~0.0125
+CAL2 meas sig=0.05 Navg= 32 Vos=0: pass=55.4% DNL99=0.823 sigma_cal~0.0087
+CAL2 meas sig=0.05 Navg= 64 Vos=0: pass=63.4% DNL99=0.808 sigma_cal~0.0062
+CAL2 meas sig=0.05 Navg=128 Vos=0: pass=68.6% DNL99=0.805 sigma_cal~0.0044
+CAL2 meas sig=0.05 Navg=256 Vos=0: pass=77.8% DNL99=0.799 sigma_cal~0.0031
+CAL2 meas sig=0.05 Navg=512 Vos=0: pass=84.0% DNL99=0.799 sigma_cal~0.0022
+CAL2 meas sig=0.1 Navg=  1 Vos=0: pass=2.2% DNL99=1.160 sigma_cal~0.0980
+CAL2 meas sig=0.1 Navg=  4 Vos=0: pass=17.8% DNL99=1.012 sigma_cal~0.0497
+CAL2 meas sig=0.1 Navg= 16 Vos=0: pass=34.4% DNL99=0.945 sigma_cal~0.0247
+CAL2 meas sig=0.1 Navg= 32 Vos=0: pass=35.2% DNL99=0.891 sigma_cal~0.0174
+CAL2 meas sig=0.1 Navg= 64 Vos=0: pass=44.6% DNL99=0.856 sigma_cal~0.0124
+CAL2 meas sig=0.1 Navg=128 Vos=0: pass=56.8% DNL99=0.824 sigma_cal~0.0088
+CAL2 meas sig=0.1 Navg=256 Vos=0: pass=65.2% DNL99=0.800 sigma_cal~0.0061
+CAL2 meas sig=0.1 Navg=512 Vos=0: pass=72.0% DNL99=0.808 sigma_cal~0.0043
+CAL2 meas sig=0.25 Navg=  1 Vos=0: pass=0.0% DNL99=1.989 sigma_cal~0.2430
+CAL2 meas sig=0.25 Navg=  4 Vos=0: pass=2.0% DNL99=1.315 sigma_cal~0.1228
+CAL2 meas sig=0.25 Navg= 16 Vos=0: pass=14.2% DNL99=1.034 sigma_cal~0.0621
+CAL2 meas sig=0.25 Navg= 32 Vos=0: pass=18.8% DNL99=1.001 sigma_cal~0.0439
+CAL2 meas sig=0.25 Navg= 64 Vos=0: pass=26.0% DNL99=0.976 sigma_cal~0.0309
+CAL2 meas sig=0.25 Navg=128 Vos=0: pass=31.4% DNL99=0.883 sigma_cal~0.0218
+CAL2 meas sig=0.25 Navg=256 Vos=0: pass=43.0% DNL99=0.842 sigma_cal~0.0154
+CAL2 meas sig=0.25 Navg=512 Vos=0: pass=46.4% DNL99=0.836 sigma_cal~0.0110
+CAL2 meas sig=0.5 Navg=  1 Vos=0: pass=0.0% DNL99=1.857 sigma_cal~0.5025
+CAL2 meas sig=0.5 Navg=  4 Vos=0: pass=0.0% DNL99=1.759 sigma_cal~0.2464
+CAL2 meas sig=0.5 Navg= 16 Vos=0: pass=1.6% DNL99=1.327 sigma_cal~0.1228
+CAL2 meas sig=0.5 Navg= 32 Vos=0: pass=5.4% DNL99=1.215 sigma_cal~0.0868
+CAL2 meas sig=0.5 Navg= 64 Vos=0: pass=13.0% DNL99=1.079 sigma_cal~0.0611
+CAL2 meas sig=0.5 Navg=128 Vos=0: pass=18.4% DNL99=1.000 sigma_cal~0.0439
+CAL2 meas sig=0.5 Navg=256 Vos=0: pass=26.6% DNL99=0.951 sigma_cal~0.0304
+CAL2 meas sig=0.5 Navg=512 Vos=0: pass=32.8% DNL99=0.898 sigma_cal~0.0218
+CAL2 meas sig=0.05 Navg= 64 Vos=0.01: pass=9.8% DNL99=0.864 sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.02: pass=1.8% DNL99=0.874 sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.05: pass=0.0% DNL99=Inf sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.1: pass=0.0% DNL99=Inf sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.25: pass=0.0% DNL99=Inf sigma_cal~NaN
+ENC FULL b= 8: pass=0.0% DNL99=288.421 sat=0 qerr=14.4508 LSB
+ENC FULL b=10: pass=0.0% DNL99=100.996 sat=0 qerr=5.8571 LSB
+ENC FULL b=12: pass=0.0% DNL99=26.145 sat=0 qerr=2.0586 LSB
+ENC FULL b=14: pass=0.0% DNL99=6.510 sat=0 qerr=0.6186 LSB
+ENC FULL b=16: pass=2.4% DNL99=1.506 sat=0 qerr=0.1354 LSB
+ENC FULL b=18: pass=55.8% DNL99=1.033 sat=0 qerr=0.0397 LSB
+ENC FULL b=20: pass=74.6% DNL99=0.864 sat=0 qerr=0.0115 LSB
+=== IMPL REFINEMENT PHASEBC START 2026-10-15 23:56:42 ===
+BWAR-Impl candidate: {"Cb_Cu":2,"topR":64,"lowR1":256,"botCap":1} (cap 250.2 pF)
+CAL2 meas sig=0.02 Navg=  1 Vos=0: pass=34.8% DNL99=0.890 sigma_cal~0.0200
+CAL2 meas sig=0.02 Navg=  4 Vos=0: pass=52.4% DNL99=0.828 sigma_cal~0.0099
+CAL2 meas sig=0.02 Navg= 16 Vos=0: pass=71.2% DNL99=0.812 sigma_cal~0.0050
+CAL2 meas sig=0.02 Navg= 32 Vos=0: pass=74.8% DNL99=0.803 sigma_cal~0.0035
+CAL2 meas sig=0.02 Navg= 64 Vos=0: pass=84.6% DNL99=0.796 sigma_cal~0.0025
+CAL2 meas sig=0.02 Navg=128 Vos=0: pass=86.2% DNL99=0.800 sigma_cal~0.0017
+CAL2 meas sig=0.02 Navg=256 Vos=0: pass=89.0% DNL99=0.798 sigma_cal~0.0012
+CAL2 meas sig=0.02 Navg=512 Vos=0: pass=94.8% DNL99=0.796 sigma_cal~0.0009
+CAL2 meas sig=0.05 Navg=  1 Vos=0: pass=17.4% DNL99=1.000 sigma_cal~0.0491
+CAL2 meas sig=0.05 Navg=  4 Vos=0: pass=30.8% DNL99=0.961 sigma_cal~0.0246
+CAL2 meas sig=0.05 Navg= 16 Vos=0: pass=43.2% DNL99=0.861 sigma_cal~0.0125
+CAL2 meas sig=0.05 Navg= 32 Vos=0: pass=55.4% DNL99=0.823 sigma_cal~0.0087
+CAL2 meas sig=0.05 Navg= 64 Vos=0: pass=63.4% DNL99=0.808 sigma_cal~0.0062
+CAL2 meas sig=0.05 Navg=128 Vos=0: pass=68.6% DNL99=0.805 sigma_cal~0.0044
+CAL2 meas sig=0.05 Navg=256 Vos=0: pass=77.8% DNL99=0.799 sigma_cal~0.0031
+CAL2 meas sig=0.05 Navg=512 Vos=0: pass=84.0% DNL99=0.799 sigma_cal~0.0022
+CAL2 meas sig=0.1 Navg=  1 Vos=0: pass=2.2% DNL99=1.160 sigma_cal~0.0980
+CAL2 meas sig=0.1 Navg=  4 Vos=0: pass=17.8% DNL99=1.012 sigma_cal~0.0497
+CAL2 meas sig=0.1 Navg= 16 Vos=0: pass=34.4% DNL99=0.945 sigma_cal~0.0247
+CAL2 meas sig=0.1 Navg= 32 Vos=0: pass=35.2% DNL99=0.891 sigma_cal~0.0174
+CAL2 meas sig=0.1 Navg= 64 Vos=0: pass=44.6% DNL99=0.856 sigma_cal~0.0124
+CAL2 meas sig=0.1 Navg=128 Vos=0: pass=56.8% DNL99=0.824 sigma_cal~0.0088
+CAL2 meas sig=0.1 Navg=256 Vos=0: pass=65.2% DNL99=0.800 sigma_cal~0.0061
+CAL2 meas sig=0.1 Navg=512 Vos=0: pass=72.0% DNL99=0.808 sigma_cal~0.0043
+CAL2 meas sig=0.25 Navg=  1 Vos=0: pass=0.0% DNL99=1.989 sigma_cal~0.2430
+CAL2 meas sig=0.25 Navg=  4 Vos=0: pass=2.0% DNL99=1.315 sigma_cal~0.1228
+CAL2 meas sig=0.25 Navg= 16 Vos=0: pass=14.2% DNL99=1.034 sigma_cal~0.0621
+CAL2 meas sig=0.25 Navg= 32 Vos=0: pass=18.8% DNL99=1.001 sigma_cal~0.0439
+CAL2 meas sig=0.25 Navg= 64 Vos=0: pass=26.0% DNL99=0.976 sigma_cal~0.0309
+CAL2 meas sig=0.25 Navg=128 Vos=0: pass=31.4% DNL99=0.883 sigma_cal~0.0218
+CAL2 meas sig=0.25 Navg=256 Vos=0: pass=43.0% DNL99=0.842 sigma_cal~0.0154
+CAL2 meas sig=0.25 Navg=512 Vos=0: pass=46.4% DNL99=0.836 sigma_cal~0.0110
+CAL2 meas sig=0.5 Navg=  1 Vos=0: pass=0.0% DNL99=1.857 sigma_cal~0.5025
+CAL2 meas sig=0.5 Navg=  4 Vos=0: pass=0.0% DNL99=1.759 sigma_cal~0.2464
+CAL2 meas sig=0.5 Navg= 16 Vos=0: pass=1.6% DNL99=1.327 sigma_cal~0.1228
+CAL2 meas sig=0.5 Navg= 32 Vos=0: pass=5.4% DNL99=1.215 sigma_cal~0.0868
+CAL2 meas sig=0.5 Navg= 64 Vos=0: pass=13.0% DNL99=1.079 sigma_cal~0.0611
+CAL2 meas sig=0.5 Navg=128 Vos=0: pass=18.4% DNL99=1.000 sigma_cal~0.0439
+CAL2 meas sig=0.5 Navg=256 Vos=0: pass=26.6% DNL99=0.951 sigma_cal~0.0304
+CAL2 meas sig=0.5 Navg=512 Vos=0: pass=32.8% DNL99=0.898 sigma_cal~0.0218
+CAL2 meas sig=0.05 Navg= 64 Vos=0.01: pass=9.8% DNL99=0.864 sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.02: pass=1.8% DNL99=0.874 sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.05: pass=0.0% DNL99=Inf sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.1: pass=0.0% DNL99=Inf sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.25: pass=0.0% DNL99=Inf sigma_cal~NaN
+ENC FULL b= 8: pass=0.0% DNL99=288.421 sat=0 qerr=14.4508 LSB
+ENC FULL b=10: pass=0.0% DNL99=100.996 sat=0 qerr=5.8571 LSB
+ENC FULL b=12: pass=0.0% DNL99=26.145 sat=0 qerr=2.0586 LSB
+ENC FULL b=14: pass=0.0% DNL99=6.510 sat=0 qerr=0.6186 LSB
+ENC FULL b=16: pass=2.4% DNL99=1.506 sat=0 qerr=0.1354 LSB
+ENC FULL b=18: pass=55.8% DNL99=1.033 sat=0 qerr=0.0397 LSB
+ENC FULL b=20: pass=74.6% DNL99=0.864 sat=0 qerr=0.0115 LSB
+ENC ERR  b= 8: pass=0.0% DNL99=1.349 sat=0 qerr=0.3212 LSB
+ENC ERR  b=10: pass=13.2% DNL99=1.258 sat=0 qerr=0.0951 LSB
+ENC ERR  b=12: pass=67.8% DNL99=0.994 sat=0 qerr=0.0277 LSB
+ENC ERR  b=14: pass=80.0% DNL99=0.844 sat=0 qerr=0.0078 LSB
+ENC ERR  b=16: pass=72.2% DNL99=0.818 sat=0 qerr=0.0019 LSB
+ENC ERR  b=18: pass=63.4% DNL99=0.819 sat=0 qerr=0.0005 LSB
+ENC ERR  b=20: pass=61.0% DNL99=0.810 sat=0 qerr=0.0001 LSB
+PHASEC Vos_resid=0: pass=68.0% DNL95=0.793 missingYield=100.0%
+PHASEC Vos_resid=0.01: pass=85.7% DNL95=0.852 missingYield=100.0%
+PHASEC Vos_resid=0.02: pass=87.7% DNL95=0.938 missingYield=100.0%
+PHASEC Vos_resid=0.05: pass=0.3% DNL95=1.000 missingYield=0.3%
+PHASEC Vos_resid=0.1: pass=0.0% DNL95=1.000 missingYield=0.0%
+PHASEC Vos_resid=0.2: pass=0.0% DNL95=1.000 missingYield=0.0%
+PHASEC Vos_resid=0.25: pass=0.0% DNL95=1.000 missingYield=0.0%
+PDK_SIGMA_CASE (sigma x 1.0259): 2000-chip CAL1 pass=100.00% DNL99=0.796
+=== IMPL REFINEMENT PHASEBC DONE 2026-10-16 00:09:02 ===

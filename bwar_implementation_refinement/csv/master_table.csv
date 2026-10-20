@@ -1,0 +1,5 @@
+candidate,Cb_Cu,Cb_fF,topR_Cu,lowR1_Cu,botCap_Cu,decision_count,total_cap_pF,CAL1_pass,CAL1_DNL99,CAL1_INL99,zero_missing_yield,monotonic_yield,CAL2_model,Navg,measurement_noise_LSB,residual_offset_LSB,coefficient_encoding,coefficient_bits,CAL2_pass
+BWAR-final-old,1.94901960784314,292.352941176471,10,240,1,19,229.184705882353,1,0.98,0.569,1,1,avg-foreground,64,0.05,0,,NaN,NaN
+BWAR-Impl-best-yield,2,300,72,256,1,19,252.6,1,0.777059210350961,0.748001523353966,1,1,avg-foreground,64,0.05,0,,NaN,NaN
+BWAR-Impl-min-cap,2,300,24,248,1,19,235.8,1,0.936147527562663,0.607257592840343,1,1,avg-foreground,64,0.05,0,ERR,NaN,0.634
+BWAR-Impl-best-margin,2,300,72,256,1,19,252.6,1,0.777059210350961,0.748001523353966,1,1,avg-foreground,64,0.05,0,,NaN,NaN

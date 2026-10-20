@@ -1,0 +1,28 @@
+=== PHASE48 STAGE P7 START 2026-10-15 19:46:25 ===
+DYN BWAR      offset_LSB=0    : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+DYN BWAR      offset_LSB=0.25 : pass=0.0% DNL95=1.204 INL95=3.690 missingP50=1960
+DYN BWAR      offset_LSB=0.5  : pass=0.0% DNL95=1.454 INL95=7.882 missingP50=8817
+DYN BWAR      offset_LSB=1    : pass=0.0% DNL95=1.954 INL95=15.390 missingP50=22401
+DYN BWAR      offset_LSB=2    : pass=0.0% DNL95=2.954 INL95=30.295 missingP50=32096
+DYN BWAR      settle_LSB=0.01 : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+DYN BWAR      settle_LSB=0.1  : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+DYN BWAR      settle_LSB=0.5  : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+DYN BWAR      settle_LSB=1    : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+DYN BWAR      settle_LSB=2    : pass=100.0% DNL95=0.966 INL95=0.559 missingP50=0
+DYN BWAR      noise_LSB=0.1  : pass=0.0% DNL95=1.000 INL95=1.000 missingP50=107
+DYN BWAR      noise_LSB=0.25 : pass=0.0% DNL95=1.500 INL95=1.000 missingP50=51
+DYN BWAR      noise_LSB=0.5  : pass=0.0% DNL95=2.000 INL95=1.480 missingP50=230
+DYN BWAR      noise_LSB=1    : pass=0.0% DNL95=2.500 INL95=1.927 missingP50=1980
+Phase 7 complete.
+=== PHASE48 STAGE P7 DONE 2026-10-15 19:46:41 ===
+=== PHASE48 STAGE P8 START 2026-10-15 19:46:41 ===
+{在不同结构体之间进行下标赋值。
+
+出错 main_phase48>run_phase8 (第 402 行)
+        s(end+1) = struct('x', (1:cfg.M-2)', 'y', curve.INL(:), 'label', leg{q}, 'style', sty{q}); %#ok<AGROW>
+        ^^^^^^^^
+出错 main_phase48 (第 15 行)
+case 'p8',  run_phase8(cfg);
+            ^^^^^^^^^^^^^^^
+} 
+ERROR: MATLAB error Exit Status: 0x00000001

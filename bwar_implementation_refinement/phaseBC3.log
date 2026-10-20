@@ -1,0 +1,68 @@
+=== IMPL REFINEMENT PHASEBC START 2026-10-15 23:46:19 ===
+BWAR-Impl candidate: {"Cb_Cu":2,"topR":64,"lowR1":256,"botCap":1} (cap 250.2 pF)
+CAL2 meas sig=0.02 Navg=  1 Vos=0: pass=34.8% DNL99=0.890 sigma_cal~0.0200
+CAL2 meas sig=0.02 Navg=  4 Vos=0: pass=52.4% DNL99=0.828 sigma_cal~0.0099
+CAL2 meas sig=0.02 Navg= 16 Vos=0: pass=71.2% DNL99=0.812 sigma_cal~0.0050
+CAL2 meas sig=0.02 Navg= 32 Vos=0: pass=74.8% DNL99=0.803 sigma_cal~0.0035
+CAL2 meas sig=0.02 Navg= 64 Vos=0: pass=84.6% DNL99=0.796 sigma_cal~0.0025
+CAL2 meas sig=0.02 Navg=128 Vos=0: pass=86.2% DNL99=0.800 sigma_cal~0.0017
+CAL2 meas sig=0.02 Navg=256 Vos=0: pass=89.0% DNL99=0.798 sigma_cal~0.0012
+CAL2 meas sig=0.02 Navg=512 Vos=0: pass=94.8% DNL99=0.796 sigma_cal~0.0009
+CAL2 meas sig=0.05 Navg=  1 Vos=0: pass=17.4% DNL99=1.000 sigma_cal~0.0491
+CAL2 meas sig=0.05 Navg=  4 Vos=0: pass=30.8% DNL99=0.961 sigma_cal~0.0246
+CAL2 meas sig=0.05 Navg= 16 Vos=0: pass=43.2% DNL99=0.861 sigma_cal~0.0125
+CAL2 meas sig=0.05 Navg= 32 Vos=0: pass=55.4% DNL99=0.823 sigma_cal~0.0087
+CAL2 meas sig=0.05 Navg= 64 Vos=0: pass=63.4% DNL99=0.808 sigma_cal~0.0062
+CAL2 meas sig=0.05 Navg=128 Vos=0: pass=68.6% DNL99=0.805 sigma_cal~0.0044
+CAL2 meas sig=0.05 Navg=256 Vos=0: pass=77.8% DNL99=0.799 sigma_cal~0.0031
+CAL2 meas sig=0.05 Navg=512 Vos=0: pass=84.0% DNL99=0.799 sigma_cal~0.0022
+CAL2 meas sig=0.1 Navg=  1 Vos=0: pass=2.2% DNL99=1.160 sigma_cal~0.0980
+CAL2 meas sig=0.1 Navg=  4 Vos=0: pass=17.8% DNL99=1.012 sigma_cal~0.0497
+CAL2 meas sig=0.1 Navg= 16 Vos=0: pass=34.4% DNL99=0.945 sigma_cal~0.0247
+CAL2 meas sig=0.1 Navg= 32 Vos=0: pass=35.2% DNL99=0.891 sigma_cal~0.0174
+CAL2 meas sig=0.1 Navg= 64 Vos=0: pass=44.6% DNL99=0.856 sigma_cal~0.0124
+CAL2 meas sig=0.1 Navg=128 Vos=0: pass=56.8% DNL99=0.824 sigma_cal~0.0088
+CAL2 meas sig=0.1 Navg=256 Vos=0: pass=65.2% DNL99=0.800 sigma_cal~0.0061
+CAL2 meas sig=0.1 Navg=512 Vos=0: pass=72.0% DNL99=0.808 sigma_cal~0.0043
+CAL2 meas sig=0.25 Navg=  1 Vos=0: pass=0.0% DNL99=1.989 sigma_cal~0.2430
+CAL2 meas sig=0.25 Navg=  4 Vos=0: pass=2.0% DNL99=1.315 sigma_cal~0.1228
+CAL2 meas sig=0.25 Navg= 16 Vos=0: pass=14.2% DNL99=1.034 sigma_cal~0.0621
+CAL2 meas sig=0.25 Navg= 32 Vos=0: pass=18.8% DNL99=1.001 sigma_cal~0.0439
+CAL2 meas sig=0.25 Navg= 64 Vos=0: pass=26.0% DNL99=0.976 sigma_cal~0.0309
+CAL2 meas sig=0.25 Navg=128 Vos=0: pass=31.4% DNL99=0.883 sigma_cal~0.0218
+CAL2 meas sig=0.25 Navg=256 Vos=0: pass=43.0% DNL99=0.842 sigma_cal~0.0154
+CAL2 meas sig=0.25 Navg=512 Vos=0: pass=46.4% DNL99=0.836 sigma_cal~0.0110
+CAL2 meas sig=0.5 Navg=  1 Vos=0: pass=0.0% DNL99=1.857 sigma_cal~0.5025
+CAL2 meas sig=0.5 Navg=  4 Vos=0: pass=0.0% DNL99=1.759 sigma_cal~0.2464
+CAL2 meas sig=0.5 Navg= 16 Vos=0: pass=1.6% DNL99=1.327 sigma_cal~0.1228
+CAL2 meas sig=0.5 Navg= 32 Vos=0: pass=5.4% DNL99=1.215 sigma_cal~0.0868
+CAL2 meas sig=0.5 Navg= 64 Vos=0: pass=13.0% DNL99=1.079 sigma_cal~0.0611
+CAL2 meas sig=0.5 Navg=128 Vos=0: pass=18.4% DNL99=1.000 sigma_cal~0.0439
+CAL2 meas sig=0.5 Navg=256 Vos=0: pass=26.6% DNL99=0.951 sigma_cal~0.0304
+CAL2 meas sig=0.5 Navg=512 Vos=0: pass=32.8% DNL99=0.898 sigma_cal~0.0218
+CAL2 meas sig=0.05 Navg= 64 Vos=0.01: pass=9.8% DNL99=0.864 sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.02: pass=1.8% DNL99=0.874 sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.05: pass=0.0% DNL99=Inf sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.1: pass=0.0% DNL99=Inf sigma_cal~NaN
+CAL2 meas sig=0.05 Navg= 64 Vos=0.25: pass=0.0% DNL99=Inf sigma_cal~NaN
+ENC FULL b= 8: pass=0.0% DNL99=288.421 sat=0 qerr=14.4508 LSB
+ENC FULL b=10: pass=0.0% DNL99=100.996 sat=0 qerr=5.8571 LSB
+ENC FULL b=12: pass=0.0% DNL99=26.145 sat=0 qerr=2.0586 LSB
+ENC FULL b=14: pass=0.0% DNL99=6.510 sat=0 qerr=0.6186 LSB
+ENC FULL b=16: pass=2.4% DNL99=1.506 sat=0 qerr=0.1354 LSB
+ENC FULL b=18: pass=55.8% DNL99=1.033 sat=0 qerr=0.0397 LSB
+ENC FULL b=20: pass=74.6% DNL99=0.864 sat=0 qerr=0.0115 LSB
+{错误使用 *
+用于矩阵乘法的维度不正确。请检查并确保第一个矩阵中的列数与第二个矩阵中的行数匹配。要单独对矩阵的每个元素进行运算，请使用 TIMES (.*)执行按元素相乘。
+
+出错 coeff_encoding_eval (第 35 行)
+            value = bits * wQ(:);
+                         ^
+出错 main_impl_refinement>run_phaseBC (第 104 行)
+B2 = coeff_encoding_eval(a, cfg);
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+出错 main_impl_refinement (第 21 行)
+    run_phaseBC(cfg);
+    ^^^^^^^^^^^^^^^^
+} 
+ERROR: MATLAB error Exit Status: 0x00000001

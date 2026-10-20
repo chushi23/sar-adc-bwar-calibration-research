@@ -1,0 +1,22 @@
+[fine] 765 candidates around Cb=2, topR=20, lowR1=256
+[fine] nominal gate: 414/765 pass
+[fine] 10k verification done
+          label          pass_yield    DNL_P99    INL_P99    total_cap_pF    lowR1_Cu
+    _________________    __________    _______    _______    ____________    ________
+
+    "Cb2_t24_l256_b1"        1         0.91957    0.62121       238.2          256   
+    "Cb2_t23_l256_b1"        1         0.92277      0.618       237.9          256   
+    "Cb2_t22_l256_b1"        1         0.92714    0.61472       237.6          256   
+    "Cb2_t24_l252_b1"        1         0.92781    0.61431         237          252   
+    "Cb2_t24_l256_b2"        1          0.9298    0.62255       238.5          256   
+    "Cb2_t22_l252_b1"        1         0.93574    0.60791       236.4          252   
+    "Cb2_t24_l248_b1"        1         0.93615    0.60726       235.8          248   
+    "Cb2_t21_l256_b1"        1          0.9308    0.61169       237.3          256   
+
+probe topR=24: pass=100.000% DNL99=0.9196 INL99=0.621 cap=238.2
+probe topR=32: pass=100.000% DNL99=0.8931 INL99=0.645 cap=240.6
+probe topR=48: pass=100.000% DNL99=0.8428 INL99=0.690 cap=245.4
+{错误使用 save
+无法写入文件 D:\模拟学习\results\bwar_implementation_refinement\raw\phaseA_fine.mat: No such file or directory。
+} 
+ERROR: MATLAB error Exit Status: 0x00000001

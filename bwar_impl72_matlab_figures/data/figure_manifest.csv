@@ -1,0 +1,9 @@
+figure,renderer,outputs
+01_原始架构_CAL1面积与良率对比,MATLAB,PNG + FIG
+02_整数桥搜索_Cb2可行区与面积_DNL前沿,MATLAB,PNG + FIG
+03_topR扫描_DNL裕量与INL代价,MATLAB,PNG + FIG
+04_Impl64_vs_Impl72_逐芯片CAL1_DNL_INL累积分布,MATLAB,PNG + FIG
+05_Impl72_CAL2微反转_代表芯片局部传输曲线,MATLAB,PNG + FIG
+06_K模型_vs_PDK失配_逐芯片DNL_INL箱线图,MATLAB,PNG + FIG
+07_Impl72_CAL0_CAL1_CAL2解码器层级良率对比,MATLAB,PNG + FIG
+08_CAL2重复平均_良率与微反转计数,MATLAB,PNG + FIG

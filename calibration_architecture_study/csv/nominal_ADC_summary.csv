@@ -1,0 +1,9 @@
+architecture,calibration_mode,DNL_max,INL_max,missing_count,monotonic,regions,down_transitions
+Current,CAL0,Inf,Inf,25759,0,39928,77
+Current,CAL1,Inf,Inf,25759,0,39928,77
+CBW,CAL0,0,0,0,1,65536,0
+CBW,CAL1,0,0,0,1,65536,0
+BWA,CAL0,0,0,0,1,65536,0
+BWA,CAL1,0,0,0,1,65536,0
+SBW,CAL0,0,0,0,1,65536,0
+SBW,CAL1,0,0,0,1,65536,0
